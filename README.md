@@ -1,9 +1,6 @@
-# alt-records
+# ALT-Records
+
 Music catalogue made with Symfony 4
-
-# Project Title
-
-One Paragraph of project description goes here
 
 ## Getting Started
 
