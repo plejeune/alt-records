@@ -1,0 +1,60 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block body %}
+
+    <section class="create mt-10">
+
+    {% if app.user and app.user.role == "admin" %}
+
+        <h1>
+            {% if editMode %}
+                Modifier l'élément
+            {% else %}
+                Insérer un élément
+            {% endif %}
+        </h1><br>
+
+        <div class="w-49">
+
+            {{ form_start(formArticle) }} 
+
+            {{ form_row(formArticle.artist, {'attr': {'placeholder': "Nom de l'artiste"}}) }}
+            {{ form_row(formArticle.title, {'attr': {'placeholder': "Titre du morceau"}}) }}
+            {{ form_row(formArticle.category) }}
+            {{ form_row(formArticle.album, {'attr': {'placeholder': "Nom de l'album"}}) }}
+            {{ form_row(formArticle.year, {'attr': {'placeholder': "Année de sortie"}}) }}
+
+            <button type="submit" class="btn btn-success mg-50 mb-50">
+                {% if editMode %}
+                    Enregistrer les modifications
+                {% else %}
+                    Ajouter l'élément
+                {% endif %}
+            </button>
+
+            &nbsp; <a href="{{ path('blog') }}" class="btn btn-light">Annuler</a>
+
+        </div>
+
+        <div class="w-49 float-l ml-20">
+
+            {{ form_row(formArticle.credits, {'attr': {'placeholder': "Maison de disque / Label"}}) }}
+            {{ form_row(formArticle.content, {'attr': {'placeholder': "Commentaire additionnel"}}) }}
+            {{ form_row(formArticle.image, {'attr': {'placeholder': "URL de l'image"}}) }}
+            {{ form_row(formArticle.video, {'attr': {'placeholder': "ID de la vidéo"}}) }}
+            <i class="grey">(Ex : www.youtube.com/watch?v=m0IKAQVVksQ <big>&#8594;</big> <b class="text-success">m0IKAQVVksQ</b>)</i><br><br>
+            {{ form_widget(formArticle.author, {value : app.user.username, 'type': 'hidden'}) }}
+        </div>
+
+            {{ form_end(formArticle) }}
+
+    {% else %}
+
+        <h3>Vous n'avez pas la permission. Contactez un administrateur.</h3>
+        <a href="{{ path('home') }}" class="btn btn-light">&#8617; Retour</a>
+
+    {% endif %}
+
+    </section>
+
+{% endblock %}

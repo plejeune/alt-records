@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if app.user %}
+
+        {% for message in app.flashes('contactok') %}
+            {% if loop.first %}
+                <div class="alert alert-light mb-m75">
+                    {{ message }} <a href="{{ path('contact') }}" class="close_x">&#10005;</a>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+    {% endif %}
+
+    <section class="home about mt-10">
+
+        <div class="description">
+            <h1>Contactez un administrateur</h1><hr><br>
+
+            <b><a href="{{ path('security_logout') }}">Vous êtes connecté en tant que <span class="capitalize">{{ app.user.username }}</span>. Ce n'est pas vous ?</a></b>
+
+
+            <div>
+                {{ form_start(contact_form) }}
+
+                {{ form_row(contact_form.name, {value : app.user.username, 'type': 'hidden'}) }}
+                {{ form_row(contact_form.message, {'attr': {'placeholder': "Votre message"}}) }}
+
+                <button type="submit" class="btn btn-success">Envoyer</button> &nbsp; <button type="reset" class="btn btn-light">Effacer</button>
+
+                {{ form_end(contact_form) }}
+            </div>
+            
+        
+        </div>
+
+    </section>   
+
+{% endblock %}

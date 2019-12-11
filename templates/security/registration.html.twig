@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+      <div class="mt-10 subscribe">
+
+        <div class="w-49">
+
+            <h1>
+            {% if editMode %}
+                Modifier les données
+            {% else %}
+                Inscription
+            {% endif %}
+            </h1><br>
+            
+            {{ form_start(form) }}
+
+            {{ form_row(form.username, {'attr': {'placeholder': 'Nom d\'utilisateur'}}) }}
+            {{ form_row(form.email, {'attr': {'placeholder': 'Adresse email'}}) }}
+
+            {% if not editMode %}
+                {{ form_row(form.password, {'attr': {'placeholder': 'Mot de passe'}}) }}
+            {% else %}
+                {{ form_row(form.password, {'attr': {'placeholder': 'Confirmez votre mot de passe'}}) }}
+            {% endif %}
+
+            <button type="submit" class="btn btn-success mg-50">
+                {% if editMode %}
+                    Enregistrer les modifications
+                {% else %}
+                    Créer un compte
+                {% endif %}
+            </button>
+
+            {% if editMode %}
+                &nbsp; <a href="{{ path('my_account', {'id': app.user.id, 'username': app.user.username}) }}" class="btn btn-secondary mg-50">Annuler</a>
+            {% else %}
+                &nbsp; <a href="{{ path('home') }}" class="btn btn-light mg-50">Annuler</a>
+            {% endif %}
+          
+        </div>
+
+        <div class="mt-6 w-49 ml-20">
+
+            {{ form_row(form.image, {'attr': {'placeholder': 'Image de profil (URL)'}}) }}
+            {{ form_row(form.description, {'attr': {'placeholder': 'Qui suis-je ? (Décrivez-vous en minimum 20 caractères)'}}) }}
+            
+             {% if editMode %}
+
+                <div></div>
+                <div></div>
+
+            {% else %}
+
+                <div class="custom-control custom-checkbox mg-30">
+                    <input type="checkbox" class="custom-control-input" id="robot" required>
+                    <label class="custom-control-label" for="robot">Je ne suis pas un robot</label>
+                </div>
+                <div class="custom-control custom-checkbox mb-25">
+                    <input type="checkbox" class="custom-control-input" id="conditions" required>
+                    <label class="custom-control-label" for="conditions">J'accepte les conditions générales d'utilisation</label>
+                </div>
+
+            {% endif %}
+
+            {{ form_end(form) }}
+        </div>
+ 
+      </div>
+
+{% endblock %}

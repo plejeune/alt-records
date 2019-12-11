@@ -1,0 +1,39 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block body %}
+
+    <section class="admin mt-10">
+
+        {% if not app.user %}
+
+            <p>Vous n'avez pas accès à cette page</p>
+            <a href="{{ path('home') }}" class="btn btn-light">Retour</a>
+
+        {% elseif app.user and app.user.role == "admin" %}
+
+            <div class="board">
+
+                <h1>Tableau de bord - Admin</h1>
+                <hr><br>
+                <h3>Gestion catalogue</h3>
+                <a href="{{ path('blog') }}" class="btn btn-light">Liste des éléments</a> &nbsp; <a href="{{ path('blog_create') }}" class="btn btn-light">Insérer un élément</a>
+                
+                <h3>Gestion commentaires</h3>
+                <a href="{{ path('blog') }}" class="btn btn-light">Commentaires signalés</a>
+                
+                <h3>Gestion users</h3>
+                <a href="{{ path('list_users') }}" class="btn btn-light">Liste des utilisateurs inscrits</a>
+
+            </div>
+
+        {% else %}
+
+            <p>Vous n'avez pas accès à cette page</p>
+            <a href="{{ path('home') }}" class="btn btn-light">&#8617; Retour</a>
+
+        {% endif %}
+
+    </section>
+
+
+{% endblock %}

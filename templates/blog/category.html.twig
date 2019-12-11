@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %} 
+
+    <section class="articles">
+
+        {% if app.user %}
+        
+            {% for article in articles %}
+
+                {% if article.category.id == 5 %}
+                    <article class="catalog_list">
+                        <div class="content">
+                            <a href="{{ path('blog_show', {'id': article.id}) }}" title="{{ article.artist }} - {{ article.title }}"><img src="{{ article.image }}" alt=""></a>   
+                        </div>
+                    </article>
+                {% else %}
+                    <article></article>
+                {% endif %}
+        
+            {% endfor %}
+
+        {% else %}
+                
+        {% endif %}
+
+    </section>
+
+{% endblock %}

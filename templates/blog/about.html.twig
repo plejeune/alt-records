@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <section class="home about mt-10">
+
+        <div class="description">
+            <h1>A propos</h1><hr><br>
+            <p><b>ALT RECORDS</b> est un catalogue de musiques alternatives et indépendantes qui propose, à travers son site web, les titres phares d'artistes alternatifs.</p>
+            <p>En tant qu'utilisateur <b>anonyme</b>, vous ne pouvez pas accéder aux titres du catalogue, mais si vous créez un compte et devenez <b>utilisateur</b>, vous aurez accès à l'ensemble de celui-ci et vous pourrez même poster des commentaires ! En bonus, un titre mp3 issu de ce même catalogue vous sera offert !</p>
+            <p>Si vous êtes <b>administrateur</b>, vous pourrez ajouter, modifier et supprimer des éléments du catalogue.</p><br>
+            
+            {% if not app.user %}
+                <a href="{{ path('security_registration') }}" class="btn btn-primary">Je m'inscris</a> &nbsp; <a href="{{ path('security_login') }}" class="btn btn-success">Je me connecte</a> &nbsp; <a href="{{ path('home') }}" class="btn btn-dark">Non merci <small>Je me promène</small></a>
+            {% else %}
+                <a href="{{ path('blog') }}" class="btn btn-success">&#9783; &nbsp;Catalogue</a>
+            {% endif %}
+        
+        </div>
+
+    </section>   
+
+{% endblock %}

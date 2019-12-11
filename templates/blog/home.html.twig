@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+        {% if app.user %}
+
+            {% for message in app.flashes('logged') %}
+                {% if loop.first %}
+                    <div class="alert alert-light mb-m75">
+                        {{ message }} <a href="{{ path('home') }}" class="close_x">&#10005;</a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+        {% endif %}
+
+            {% for message in app.flashes('account_deleted') %}
+                {% if loop.first %}
+                    <div class="alert alert-light mb-m75">
+                        {{ message }} <a href="{{ path('home') }}" class="close_x">&#10005;</a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+
+    <section class="home text-center mt-8">
+        
+        <p class="home-title"><b>&#9886; ALT RECORDS &#9887;</b></p>
+
+        {% if app.user %}
+            <h3>Bienvenue, <span class="text-success capitalize">{{ app.user.username }}</span> !</h3>
+
+            <div class="description">
+                <p><b>ALT RECORDS</b> est un catalogue de musiques alternatives, créé avec le framework <b>Symfony 4</b>.</p>
+                <a href="{{ path('blog') }}" class="btn btn-success">Voir le catalogue</a><br><br>
+                <hr>
+                {% if app.user.role == "admin" %}
+                    <h4>&#8886; Version : 1.0.1 &nbsp; &nbsp; &nbsp; &#8892; Statut : [ vous êtes <b>admin</b> ] &nbsp; &nbsp; &nbsp; &#8795; /PWD 2019-20</h4>
+           
+                {% elseif app.user.role == "user"%}
+                    <h4>&#8886; Version : 1.0.1 &nbsp; &nbsp; &nbsp; &#8892; Statut : [ vous êtes <b>simple user</b> ] &nbsp; &nbsp; &nbsp; &#8795; /PWD 2019-20</h4>
+                {% endif %}
+
+            </div>
+
+        {% else %}
+            <h3>Bienvenue, visiteur !</h3>
+
+            <div class="description">
+                <p><b>ALT RECORDS</b> est un catalogue de musiques alternatives, créé avec le framework <b>Symfony 4</b>.</p>
+                <a href="{{ path('about') }}" class="btn btn-light">Comment ça marche ?</a> &nbsp; <a href="{{ path('security_login') }}" class="btn btn-success">Connexion</a><br>
+                <br><hr>
+                <h4>&#8886; Version : 1.0.1 &nbsp; &nbsp; &nbsp; &#8892; Statut : [ vous êtes <b>anonyme</b> ] &nbsp; &nbsp; &nbsp; &#8795; /PWD 2019-20</h4>
+            </div>
+        {% endif %}
+
+    </section>   
+
+{% endblock %}

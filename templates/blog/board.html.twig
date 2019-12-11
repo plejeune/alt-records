@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %} 
+
+{% block body %}
+
+    {% for message in app.flashes('resignin') %}
+        <div class="alert alert-light mb-m100">
+            {{ message }} <a href="{{ path('my_account', {'username': app.user.username, 'id': app.user.id}) }}" class="close_x">&#10005;</a>
+        </div>
+    {% endfor %}
+
+    {% block section %}
+
+        {% if app.user %}
+
+            <div class="mt-10 mydata">
+                <h1>Mon compte</h1>
+                <hr>
+                <img class="float-l mg-30 ml-75 mr-50" src="{{ app.user.image }}">
+
+                <div class="mg-10 float-l data">
+                    
+                    <table id="data-table">
+                        <tr>
+                            <td class="lightgrey">Nom d'utilisateur</td>
+                            <td><b class="capitalize">{{ app.user.username }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="lightgrey">Adresse email</td>
+                            <td><b>{{ app.user.email }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="lightgrey">Mot de passe</td>
+                            <td><b>**********</b></td>
+                        </tr>
+                        <tr>
+                            <td class="lightgrey">Identifiant</td>
+                            <td><b>PWD-{{ app.user.id }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="lightgrey">Rôle/statut</td>
+                            <td><b>{{ app.user.role }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="lightgrey">Date d'inscription</td>
+                            <td><b>{{ app.user.createdAt | date ('d/m/Y à H:i') }}</b></td>
+                        </tr>
+                    </table>
+
+                    <div class="data-description">
+                        <p class="lightgrey">Description</p>
+                        <b>{{ app.user.description }}</b>
+                    </div>
+                    
+                </div>
+
+                <div class="nav-btn text-right">
+
+                    <div class="btn btn-success btn-sm float-l option ml-20 param-1">1</div> 
+                    <div class="btn btn-light btn-sm float-l option param-2">2</div>
+
+                </div>
+                    
+                <div class="parameters text-right">
+                    
+                    <div class="options_btn">
+                        <div class="btn btn-light btn-sm option_btn">
+                            &#11093; Options
+                        </div>
+                        <div class="sub-options">
+                        <br>
+                            <div class="edit_btn">
+                                <a href="{{ path('security_account', {'username': app.user.username, 'id': app.user.id}) }}" class="btn btn-light btn-sm">Modifier les infos</a>
+                            </div>
+                            <div class="edit_mdp_btn">
+                                <a href="#" class="btn btn-light btn-sm">Modifier mot de passe</a>
+                            </div>
+                            <div class="edit_mdp_btn">
+                                <a href="#" class="btn btn-light btn-sm">MP3 offert</a>
+                            </div><br>
+                            <div class="logout_btn">
+                                <a href="{{ path('security_logout') }}" class="btn btn-outline-warning btn-sm">Se déconnecter</a>
+                            </div>
+                            <div class="del_btn">
+                                <div class="btn btn-outline-danger btn-sm btn-window">Supprimer le compte</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="delete-window">
+                    <div class="mt-15 text-center window-info">
+                        <h4>Voulez-vous vraiment supprimer votre compte ?</h4>
+                        <p>Cette action est irréversible</p>
+                        <div class="btn btn-light cancel">Annuler</div> &nbsp; <a href="{{ path('account_delete', {'id': app.user.id }) }}" class="btn btn-danger">Confirmer</a>
+                    </div>
+                </div>
+
+            </div>
+
+            
+
+        {% else %}
+
+        {% endif %}
+
+    {% endblock %}
+
+    {% block javascripts %}
+        <script>
+            $( ".param-1" ).on( "click", function() {
+                $("#data-table").show();
+                $(".data-description").hide();
+                $('.param-1').removeClass('btn-light').addClass('btn-success');
+                $('.param-2').removeClass('btn-success').addClass('btn-light');
+            });
+
+            $( ".param-2" ).on( "click", function() {
+                $("#data-table").hide();
+                $(".data-description").show();
+                $('.param-1').removeClass('btn-success').addClass('btn-light');
+                $('.param-2').removeClass('btn-light').addClass('btn-success');
+            });
+
+            $( ".option_btn" ).on( "click", function() {
+                $(".sub-options").show();
+            });
+
+            $( ".sub-options" ).mouseleave(function() {
+                $(".sub-options").hide();
+            });
+
+            $( ".del_btn" ).on( "click", function() {
+                $(".delete-window").show();
+            });
+
+            $( ".cancel" ).on( "click", function() {
+                $(".delete-window").hide();
+            });
+        </script>
+    {% endblock %}
+
+{% endblock %}

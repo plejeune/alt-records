@@ -1,0 +1,48 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block body %} 
+
+        {% if not app.user %}
+
+            <p>Vous n'avez pas accès à cette page</p>
+            <a href="{{ path('home') }}" class="btn btn-light">Retour</a>
+
+        {% elseif app.user and app.user.role == "admin" %}
+
+            <div class="mt-10 userlist">
+                <h1>Utilisateurs inscrits</h1>
+                <hr>      
+                <table class="table table-hover users">
+                    <thead>
+                        <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">username</th>
+                            <th scope="col">email</th>
+                            <th scope="col">Inscrit le</th>
+                            <th scope="col">role</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                            <tr class="table-active">
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.createdAt | date ('d/m/Y à H:i') }}</td>
+                                <td>{{ user.role }}</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table> 
+            </div>    
+
+        {% else %}
+
+            <p>Vous n'avez pas accès à cette page</p>
+            <a href="{{ path('home') }}" class="btn btn-light">&#8617; Retour</a>
+                
+        {% endif %}
+
+{% endblock %}

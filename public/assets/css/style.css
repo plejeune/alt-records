@@ -1,0 +1,371 @@
+body {
+    background-image: url(../images/alt_bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.bg-admin {
+    background-image: url();
+    background-color: lightgray;
+}
+
+.absolute { position: absolute; }
+.float-l { float: left; }
+.uppercase { text-transform: uppercase; }
+.capitalize { text-transform: capitalize;}
+.align-right { right: 1%; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+.w-40 { width:40%; float: left; }
+.w-49 { width: 49%; float: left; }
+.w-75 { width: 75%; }
+.w-100 { width: 100%; }
+.h-100 { height: 100%; }
+
+.w-0 { 
+    width: 0;
+    display: none;
+}
+
+/* Margin TOP */
+
+.mt-5 { margin-top: 5%; }
+.mt-6 { margin-top: 6.2%; }
+.mt-8 { margin-top: 8%; }
+.mt-10 { margin-top: 10%; }
+.mt-12 { margin-top: 12%; }
+.mt-15 { margin-top: 15%; }
+.mt-17 { margin-top: 17.5%; }
+.mt-18 { margin-top: 18%; }
+.mt-20 { margin-top: 20%; }
+
+.mg-10 { margin-top: 10px; }
+.mg-20 { margin-top: 20px; }
+.mg-30 { margin-top: 30px; }
+.mg-50 { margin-top: 50px; }
+
+.mg-m20 { margin-top: -20px; }
+.mg-m30 { margin-top: -30px; }
+.mg-m50 { margin-top: -50px; }
+.mg-m100 { margin-top: -100px; }
+
+
+/* Margin LEFT */
+
+.ml-20 { margin-left: 20px; }
+.ml-35 { margin-left: 35px; }
+.ml-50 { margin-left: 50px; }
+.ml-75 { margin-left: 75px; }
+.ml-100 { margin-left: 100px; }
+.ml-500 { margin-left: 1000px; }
+.ml-m80 { margin-left: -80px; }
+
+
+/* Margin RIGHT */
+
+.mr-20 { margin-right: 20px; }
+.mr-50 { margin-right: 50px; }
+.mr-100 { margin-right: 100px; }
+
+.mr-m20 { margin-right: -20px; }
+
+
+/* Margin BOTTOM */
+
+.mb-20 { margin-bottom: 20px; }
+.mb-25 { margin-bottom: 24px; }
+.mb-30 { margin-bottom: 30px; }
+.mb-50 { margin-bottom: 50px; }
+.mb-m50 { margin-bottom: -50px; }
+.mb-m75 { margin-bottom: -75px; }
+.mb-m100 { margin-bottom: -95px; }
+
+
+/* COLOR */
+
+.red { color: red; }
+.green { color: green; }
+.grey { color: grey; }
+.lightgrey { color: lightgrey; }
+
+
+/* Other */
+
+.navbar {
+    margin-bottom: 50px;
+}
+
+.navbar img {
+    width: 16px;
+}
+
+.navbar-brand:hover {
+    opacity: .7;
+}
+
+.form-group label {
+    display: none;
+}
+
+.form-group input {
+    margin-top: 20px;
+}
+
+.form-group textarea {
+    height: 55px;
+}
+
+#comment_author {
+    display: none;
+}
+
+.about p {
+    font-size: 16px;
+}
+
+.catalog_list {
+    float: left;
+    margin: 10px;
+}
+
+.catalog_list img {
+    width: 250px;
+    height: 250px;
+}
+
+.catalog_list img:hover {
+    opacity: .8;
+}
+
+#articles {
+    background-color: rgba(255,255,255,.5);
+    padding: 20px;
+}
+
+#commentaires {
+    background-image:linear-gradient(rgba(255,255,255, .5),rgba(255,255,255, 1));
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+#articles img {
+    width: 450px;
+    height: 450px;
+}
+
+.item {
+    height: 1150px;
+}
+
+.description {
+    line-height: 20px;
+}
+
+.description h4 {
+    font-weight: 100;
+    font-size: 12px;
+    color: grey;
+    margin-top: 20px;
+}
+
+.home-title {
+    font-size: 100px;
+    margin-bottom: 10px;
+    padding-top: 20px;
+}
+
+.close_x {
+    position: absolute;
+    right: 1.5%;
+    color: gray;
+}
+
+.close_x:hover {
+    font-weight: bold;
+    color: green;
+    text-decoration: none;
+}
+
+.board a {
+    margin-bottom: 30px;
+}
+
+.data {
+    /* background-image:linear-gradient(rgba(255,255,255, .5),rgba(255,255,255, 0)); */
+    /* box-shadow: 0 -15px 20px -10px darkgray; */
+    width: 550px;
+    height: 230px;
+    padding: 25px;
+    /* border-left: 1px solid grey; */
+}
+
+.data table {
+    width: 100%;
+    margin-left: 20px;
+    font-size: 22px;
+    display: block;
+}
+
+.data table b {
+    margin-left: 20px;
+}
+
+.data-description {
+    width: 100%;
+    height: 250px;
+    margin-left: 20px;
+    font-size: 22px;
+    display: none;
+}
+
+.mydata img {
+    width: 230px;
+    height: 230px;
+    border-radius: 120px;
+    box-shadow: 1px 1px 15px grey;
+
+/*    box-shadow: 0 -15px 20px -10px darkgray; */
+/*
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+*/
+}
+
+.delete-window {
+    background-color: rgba(0,0,0,.85);
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: 999;
+    display: none;
+}
+
+.window-info {
+    background-color: lightgrey;
+    padding: 20px;
+}
+
+.line {
+    background-color: lightgrey; 
+    width: 100%;
+    height: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.login, .subscribe, .about, .mydata, .create, .admin, .userlist {
+    background-image:linear-gradient(rgba(255,255,255, .5),rgba(255,255,255, 0));
+    box-shadow: 0 -15px 20px -10px darkgray;
+    width: 100%;
+    height: 350px;
+    padding: 20px;
+}
+
+.admin, .userlist {
+    background-image:linear-gradient(rgba(255,255,255, .3),rgba(255,255,255, 0));
+}
+
+.subscribe {
+    height: 450px;
+}
+
+.create {
+    height: 550px;
+}
+
+.sub-options {
+    display: none;
+}
+
+.sub-options div {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.item-data {
+    width: 500px;
+    height: 500px;
+    margin-left: 20px;
+    margin-right: 50px;
+    margin-bottom: 0px;
+}
+
+#item-data-table {
+    width: 100%;
+    margin-left: 50px;
+    margin-top: 20px;
+    font-size: 22px;
+}
+
+#item-data-table b {
+    margin-left: 60px;
+}
+
+.item-info {
+    font-size: 15px;
+}
+
+iframe {
+    width: 96%;
+    height: 600px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.content {
+    position: relative;
+}
+
+.content:hover .overlay {
+    opacity: .8;
+}
+  
+.text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 250px;
+    width: 250px;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #000;
+  }
+
+  footer {
+      float: left;
+      bottom: 0;
+      width: 100%;
+      height: 30px;
+      text-align: center;
+  }
+
+  .footer-copyright {
+      color: #fff;
+  }
+
+
+
+
+

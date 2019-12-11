@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="alert alert-light mb-m75">
+        Le compte a été supprimé. <a href="{{ path('home') }}" class="close_x">&#10005;</a>
+    </div>
+
+    {% block javascripts %}
+        <script>
+            function redir(){
+                self.location.href="{{ path('home') }}"
+            }
+            setTimeout(redir,3000)
+        </script>
+    {% endblock %}
+
+{% endblock %}

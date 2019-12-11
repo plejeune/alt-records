@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catalogue{% endblock %}
+
+{% block body %}
+
+    {% for message in app.flashes('item_deleted') %}
+        <div class="alert alert-light">
+            {{ message }} <a href="{{ path('blog') }}"><span class="close_x">&#10005;</span></a>
+        </div>
+    {% endfor %}
+
+    <section class="articles">
+
+        {% for article in articles %}
+            <article class="catalog_list draggable">
+                <div class="content">
+                    {% if app.user %}
+                        <a href="{{ path('blog_show', {'id': article.id}) }}" title="{{ article.artist }} - {{ article.title }}"><img src="{{ article.image }}" alt="">
+                        <div class="overlay">
+                            <div class="text">{{ article.artist }} - {{ article.title }}</div>
+                        </div></a>
+                    {% else %}
+                        <a href="{{ path('security_login') }}"><img src="{{ article.image }}" alt=""></a>
+                    {% endif %}
+                </div>
+            </article>
+        {% endfor %}
+
+        <br><br><br><br>
+
+    </section>
+
+    <footer class="page-footer font-small">
+
+            <div class="footer-copyright text-center py-3">
+                <p>© 2019-20 Copyright : ALT Records</p>
+            </div>
+
+        </footer>
+
+    <script>
+        $( ".draggable" ).draggable({
+            
+        });
+    </script>
+
+    
+
+{% endblock %}
+
