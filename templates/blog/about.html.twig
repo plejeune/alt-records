@@ -5,10 +5,16 @@
     <section class="home about mt-10">
 
         <div class="description">
-            <h1>A propos</h1><hr><br>
-            <p><b>ALT RECORDS</b> est un catalogue de musiques alternatives et indépendantes qui propose, à travers son site web, les titres phares d'artistes alternatifs.</p>
-            <p>En tant qu'utilisateur <b>anonyme</b>, vous ne pouvez pas accéder aux titres du catalogue, mais si vous créez un compte et devenez <b>utilisateur</b>, vous aurez accès à l'ensemble de celui-ci et vous pourrez même poster des commentaires ! En bonus, un titre mp3 issu de ce même catalogue vous sera offert !</p>
-            <p>Si vous êtes <b>administrateur</b>, vous pourrez ajouter, modifier et supprimer des éléments du catalogue.</p><br>
+            <h1>www</h1><hr>
+            <h4 style="font-size:25px;"><b>ALT RECORDS</b> est un catalogue de musiques alternatives et indépendantes qui propose, à travers son site web, les titres phares d'artistes alternatifs.</h4><br>
+            <p>&#10006; En tant qu'<b>anonyme</b>, vous ne pouvez pas accéder aux titres du catalogue</p>
+            <p>&#10004; Si vous créez un compte et devenez <b>utilisateur</b>, vous aurez accès à :</p>
+            &nbsp; &nbsp; &#8658; l'ensemble du catalogue<br>
+            &nbsp; &nbsp; &#8658; un espace personnel<br>
+            &nbsp; &nbsp; &#8658; poster des commentaires<br>
+            &nbsp; &nbsp; &#8658; un titre mp3 offert</p>
+            <p>&#10004; Si vous êtes <b>administrateur</b>, vous pourrez ajouter, modifier et supprimer des éléments du catalogue.
+            <p>&#10004; Le code du projet est disponible sur <a href="https://github.com/plejeune/alt-records" target="_blank">GitHub</a>.</p></p><br>
             
             {% if not app.user %}
                 <a href="{{ path('security_registration') }}" class="btn btn-primary">Je m'inscris</a> &nbsp; <a href="{{ path('security_login') }}" class="btn btn-success">Je me connecte</a> &nbsp; <a href="{{ path('home') }}" class="btn btn-dark">Non merci <small>Je me promène</small></a>
