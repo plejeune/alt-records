@@ -281,6 +281,10 @@ body {
     height: 550px;
 }
 
+.about {
+    height: 400px;
+}
+
 .sub-options {
     display: none;
 }
@@ -365,6 +369,12 @@ iframe {
       color: #fff;
       text-align: center;
   }
+
+  /*
+  .Rock, .Pop, .Metal, .Grunge {
+      display: none;
+  }
+  */
 
 
 

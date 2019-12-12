@@ -12,6 +12,10 @@
 
     <section class="articles">
 
+        <div class="tri text-right">
+            <b class="mr-50"><a href="{{ path('list_category') }}">Trier par catégorie</a></b>
+        </div><br>
+
         {% for article in articles %}
             <article class="catalog_list draggable">
                 <div class="content">

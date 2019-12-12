@@ -2,16 +2,28 @@
 
 {% block body %} 
 
-    <section class="articles">
+    <div class="tri text-right mr-50">
+            <b>Trier par catégorie : &nbsp;</b>
+            <div class="btn btn-success btn-sm btn-all capitalize">Tout</div> &nbsp; <b>/</b> &nbsp;
+            <div class="btn btn-light btn-sm btn-rock">Rock</div>
+            <div class="btn btn-light btn-sm btn-pop">Pop</div>
+            <div class="btn btn-light btn-sm btn-metal">Metal</div>
+            <div class="btn btn-light btn-sm btn-grunge">Grunge</div>
+        </div><br>
+
+    <section class="articles Pop">
 
         {% if app.user %}
         
             {% for article in articles %}
 
-                {% if article.category.id == 5 %}
+                {% if article.category.description == "Pop" %}
                     <article class="catalog_list">
                         <div class="content">
-                            <a href="{{ path('blog_show', {'id': article.id}) }}" title="{{ article.artist }} - {{ article.title }}"><img src="{{ article.image }}" alt=""></a>   
+                            <a href="{{ path('blog_show', {'id': article.id}) }}" title="{{ article.artist }} - {{ article.title }}"><img src="{{ article.image }}" alt="">   
+                            <div class="overlay">
+                                <div class="text">{{ article.artist }} - {{ article.title }}</div>
+                            </div></a>
                         </div>
                     </article>
                 {% else %}
@@ -25,5 +37,151 @@
         {% endif %}
 
     </section>
+
+    <section class="articles Rock">
+
+        {% if app.user %}
+        
+            {% for article in articles %}
+
+                {% if article.category.description == "Rock" %}
+                    <article class="catalog_list">
+                        <div class="content">
+                            <a href="{{ path('blog_show', {'id': article.id}) }}" title="{{ article.artist }} - {{ article.title }}"><img src="{{ article.image }}" alt="">   
+                            <div class="overlay">
+                                <div class="text">{{ article.artist }} - {{ article.title }}</div>
+                            </div></a>
+                        </div>
+                    </article>
+                {% else %}
+                    <article></article>
+                {% endif %}
+        
+            {% endfor %}
+
+        {% else %}
+                
+        {% endif %}
+
+    </section>
+
+    <section class="articles Metal">
+
+        {% if app.user %}
+        
+            {% for article in articles %}
+
+                {% if article.category.description == "Metal" %}
+                    <article class="catalog_list">
+                        <div class="content">
+                            <a href="{{ path('blog_show', {'id': article.id}) }}" title="{{ article.artist }} - {{ article.title }}"><img src="{{ article.image }}" alt="">   
+                            <div class="overlay">
+                                <div class="text">{{ article.artist }} - {{ article.title }}</div>
+                            </div></a>
+                        </div>
+                    </article>
+                {% else %}
+                    <article></article>
+                {% endif %}
+        
+            {% endfor %}
+
+        {% else %}
+                
+        {% endif %}
+
+    </section>
+
+    <section class="articles Grunge">
+
+        {% if app.user %}
+        
+            {% for article in articles %}
+
+                {% if article.category.description == "Grunge" %}
+                    <article class="catalog_list">
+                        <div class="content">
+                            <a href="{{ path('blog_show', {'id': article.id}) }}" title="{{ article.artist }} - {{ article.title }}"><img src="{{ article.image }}" alt="">   
+                            <div class="overlay">
+                                <div class="text">{{ article.artist }} - {{ article.title }}</div>
+                            </div></a>
+                        </div>
+                    </article>
+                {% else %}
+                    <article></article>
+                {% endif %}
+        
+            {% endfor %}
+
+        {% else %}
+                
+        {% endif %}
+
+    </section>
+
+    {% block javascripts %}
+        <script>
+
+            $( ".btn-all" ).on( "click", function() {
+                $(".Rock").show();
+                $(".Pop").show();
+                $(".Metal").show();
+                $(".Grunge").show();
+                $('.btn-rock').removeClass('btn-success').addClass('btn-light');
+                $('.btn-pop').removeClass('btn-success').addClass('btn-light');
+                $('.btn-metal').removeClass('btn-success').addClass('btn-light');
+                $('.btn-grunge').removeClass('btn-success').addClass('btn-light');
+                $('.btn-all').removeClass('btn-light').addClass('btn-success');
+            });
+
+            $( ".btn-rock" ).on( "click", function() {
+                $(".Rock").show();
+                $(".Pop").hide();
+                $(".Metal").hide();
+                $(".Grunge").hide();
+                $('.btn-rock').removeClass('btn-light').addClass('btn-success');
+                $('.btn-pop').removeClass('btn-success').addClass('btn-light');
+                $('.btn-metal').removeClass('btn-success').addClass('btn-light');
+                $('.btn-grunge').removeClass('btn-success').addClass('btn-light');
+                $('.btn-all').removeClass('btn-success').addClass('btn-light');
+            });
+
+            $( ".btn-pop" ).on( "click", function() {
+                $(".Rock").hide();
+                $(".Pop").show();
+                $(".Metal").hide();
+                $(".Grunge").hide();
+                $('.btn-pop').removeClass('btn-light').addClass('btn-success');
+                $('.btn-rock').removeClass('btn-success').addClass('btn-light');
+                $('.btn-metal').removeClass('btn-success').addClass('btn-light');
+                $('.btn-grunge').removeClass('btn-success').addClass('btn-light');
+                $('.btn-all').removeClass('btn-success').addClass('btn-light');
+            });
+
+            $( ".btn-metal" ).on( "click", function() {
+                $(".Rock").hide();
+                $(".Pop").hide();
+                $(".Metal").show();
+                $(".Grunge").hide();
+                $('.btn-metal').removeClass('btn-light').addClass('btn-success');
+                $('.btn-pop').removeClass('btn-success').addClass('btn-light');
+                $('.btn-rock').removeClass('btn-success').addClass('btn-light');
+                $('.btn-grunge').removeClass('btn-success').addClass('btn-light');
+                $('.btn-all').removeClass('btn-success').addClass('btn-light');
+            });
+
+            $( ".btn-grunge" ).on( "click", function() {
+                $(".Rock").hide();
+                $(".Pop").hide();
+                $(".Metal").hide();
+                $(".Grunge").show();
+                $('.btn-grunge').removeClass('btn-light').addClass('btn-success');
+                $('.btn-pop').removeClass('btn-success').addClass('btn-light');
+                $('.btn-metal').removeClass('btn-success').addClass('btn-light');
+                $('.btn-rock').removeClass('btn-success').addClass('btn-light');
+                $('.btn-all').removeClass('btn-success').addClass('btn-light');
+            });
+        </script>
+    {% endblock %}
 
 {% endblock %}

@@ -93,11 +93,6 @@ class SecurityController extends AbstractController {
      * @Route("/deconnexion", name="security_logout")
      */
     public function logout() {
-
-        $this->addFlash(
-            'loggedOut',
-            'Vous êtes déconnecté. Nous espérons vous revoir bientôt !'
-        );
         
     }
 
