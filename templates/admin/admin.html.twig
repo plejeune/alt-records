@@ -9,17 +9,17 @@
             <p>Vous n'avez pas accès à cette page</p>
             <a href="{{ path('home') }}" class="btn btn-light">Retour</a>
 
-        {% elseif app.user and app.user.role == "admin" %}
+        {% elseif app.user and app.user.role == "ROLE_ADMIN" %}
 
             <div class="board">
 
                 <h1>Tableau de bord - Admin</h1>
                 <hr><br>
                 <h3>Gestion catalogue</h3>
-                <a href="{{ path('blog') }}" class="btn btn-light">Liste des éléments</a> &nbsp; <a href="{{ path('blog_create') }}" class="btn btn-light">Insérer un élément</a>
+                <a href="{{ path('catalogue') }}" class="btn btn-light">Liste des éléments</a> &nbsp; <a href="{{ path('blog_create') }}" class="btn btn-light">Insérer un élément</a>
                 
                 <h3>Gestion commentaires</h3>
-                <a href="{{ path('blog') }}" class="btn btn-light">Commentaires signalés</a>
+                <a href="{{ path('catalogue') }}" class="btn btn-light">Commentaires signalés</a>
                 
                 <h3>Gestion users</h3>
                 <a href="{{ path('list_users') }}" class="btn btn-light">Liste des utilisateurs inscrits</a>

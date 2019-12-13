@@ -77,15 +77,15 @@
                         <p>Ajouté au catalogue le <b>{{ article.createdAt | date('d/m/Y') }}</b> par <b>{{ article.author }}</b><br>Modifié le <b>{{ article.modifiedAt | date('d/m/Y') }}</b> par <b>{{ article.author }}</b></p>              
                     </div>
 
-                {% if app.user.role == "admin" %}
+                {% if app.user.role == "ROLE_ADMIN" %}
                     <div class="item-buttons ml-50 mg-30">
-                        <a href="{{ path('blog') }}" class="btn btn-light">&#8617; Retour au catalogue</a> &nbsp; 
+                        <a href="{{ path('catalogue') }}" class="btn btn-light">&#8617; Retour au catalogue</a> &nbsp; 
                         <a href="{{ path('blog_edit', { 'id': article.id }) }}" class="btn btn-primary">Modifier</a> &nbsp; 
                         <div class="btn btn-danger del_btn">Supprimer</div>
                     </div>
                 {% else %}
 
-                    <a href="{{ path('blog') }}" class="btn btn-light ml-50 mg-20">Retour au catalogue</a>
+                    <a href="{{ path('catalogue') }}" class="btn btn-light ml-50 mg-20">Retour au catalogue</a>
 
                 {% endif %}
 

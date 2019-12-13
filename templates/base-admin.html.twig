@@ -18,7 +18,7 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
 
-                    {% if app.user and app.user.role == "admin" %}
+                    {% if app.user and app.user.role == "ROLE_ADMIN" %}
 
                         <li class="nav-item">
                             <a href="{{ path('home') }}" class="nav-link">&#8617; Retour au site</a>

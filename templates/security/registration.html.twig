@@ -22,7 +22,7 @@
             {% if not editMode %}
                 {{ form_row(form.password, {'attr': {'placeholder': 'Mot de passe'}}) }}
             {% else %}
-                {{ form_row(form.password, {'attr': {'placeholder': 'Confirmez votre mot de passe'}}) }}
+                {{ form_row(form.password, {'attr': {'placeholder': 'Confirmez votre mot de passe ou entrez-en un nouveau'}}) }}
             {% endif %}
 
             <button type="submit" class="btn btn-success mg-50">
@@ -65,6 +65,7 @@
             {% endif %}
 
             {{ form_end(form) }}
+            
         </div>
  
       </div>

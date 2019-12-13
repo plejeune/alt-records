@@ -5,18 +5,17 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\HttpFoundation\Session\Session;
+
+use Doctrine\Common\Persistence\ObjectManager;
 
 use App\Entity\User;
 use App\Form\RegistrationType;
-
 use App\Repository\UserRepository;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-
-use Symfony\Component\HttpFoundation\Session\Session;
 
 class SecurityController extends AbstractController {
 
@@ -42,7 +41,7 @@ class SecurityController extends AbstractController {
             if(!$user->getId()) { 
 
                 $user->setCreatedAt(new \DateTime());
-                $user->setRole("user");
+                $user->setRole("ROLE_USER");
                 /* $user->addRole("ROLE_USER"); */
 
                 $manager->persist($user);
@@ -117,7 +116,7 @@ class SecurityController extends AbstractController {
 
         $users = $repo->findAll();
 
-        return $this->render('blog/board.html.twig', [
+        return $this->render('pages/board.html.twig', [
             'users' => $users
         ]);
     }

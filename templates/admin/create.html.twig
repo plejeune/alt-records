@@ -4,7 +4,7 @@
 
     <section class="create mt-10">
 
-    {% if app.user and app.user.role == "admin" %}
+    {% if app.user and app.user.role == "ROLE_ADMIN" %}
 
         <h1>
             {% if editMode %}
@@ -32,7 +32,7 @@
                 {% endif %}
             </button>
 
-            &nbsp; <a href="{{ path('blog') }}" class="btn btn-light">Annuler</a>
+            &nbsp; <a href="{{ path('catalogue') }}" class="btn btn-light">Annuler</a>
 
         </div>
 

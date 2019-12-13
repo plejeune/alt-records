@@ -1,22 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block body %} 
+{% block body %}
 
     <div class="tri text-right mr-50">
-            <b>Trier par catégorie : &nbsp;</b>
-            <div class="btn btn-success btn-sm btn-all capitalize">Tout</div> &nbsp; <b>/</b> &nbsp;
-            <div class="btn btn-light btn-sm btn-rock">Rock</div>
-            <div class="btn btn-light btn-sm btn-pop">Pop</div>
-            <div class="btn btn-light btn-sm btn-metal">Metal</div>
-            <div class="btn btn-light btn-sm btn-grunge">Grunge</div>
-        </div><br>
+        <b>Trier par catégorie : &nbsp;</b>
+        <div class="btn btn-success btn-sm btn-all capitalize">Tout</div> &nbsp; <b>/</b> &nbsp;
+        <div class="btn btn-light btn-sm btn-rock">Rock</div>
+        <div class="btn btn-light btn-sm btn-pop">Pop</div>
+        <div class="btn btn-light btn-sm btn-metal">Metal</div>
+        <div class="btn btn-light btn-sm btn-grunge">Grunge</div>
+    </div><br>
 
-    <section class="articles Pop">
-
-        {% if app.user %}
+    {% if app.user %}
         
-            {% for article in articles %}
+        {% for article in articles %}
 
+            <section class="articles Pop">
                 {% if article.category.description == "Pop" %}
                     <article class="catalog_list">
                         <div class="content">
@@ -29,21 +28,9 @@
                 {% else %}
                     <article></article>
                 {% endif %}
-        
-            {% endfor %}
+            </section>
 
-        {% else %}
-                
-        {% endif %}
-
-    </section>
-
-    <section class="articles Rock">
-
-        {% if app.user %}
-        
-            {% for article in articles %}
-
+            <section class="articles Rock">
                 {% if article.category.description == "Rock" %}
                     <article class="catalog_list">
                         <div class="content">
@@ -56,21 +43,9 @@
                 {% else %}
                     <article></article>
                 {% endif %}
-        
-            {% endfor %}
+            </section>
 
-        {% else %}
-                
-        {% endif %}
-
-    </section>
-
-    <section class="articles Metal">
-
-        {% if app.user %}
-        
-            {% for article in articles %}
-
+            <section class="articles Metal">
                 {% if article.category.description == "Metal" %}
                     <article class="catalog_list">
                         <div class="content">
@@ -83,21 +58,9 @@
                 {% else %}
                     <article></article>
                 {% endif %}
-        
-            {% endfor %}
+            </section>
 
-        {% else %}
-                
-        {% endif %}
-
-    </section>
-
-    <section class="articles Grunge">
-
-        {% if app.user %}
-        
-            {% for article in articles %}
-
+            <section class="articles Grunge">
                 {% if article.category.description == "Grunge" %}
                     <article class="catalog_list">
                         <div class="content">
@@ -110,14 +73,14 @@
                 {% else %}
                     <article></article>
                 {% endif %}
-        
-            {% endfor %}
+            </section>
 
-        {% else %}
-                
-        {% endif %}
+        {% endfor %}
 
-    </section>
+    {% else %}
+        <p>Vous n'avez pas accès à cette page</p>
+        <a href="{{ path('home') }}" class="btn btn-light">&#8617; Retour</a>
+    {% endif %}
 
     {% block javascripts %}
         <script>

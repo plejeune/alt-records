@@ -6,14 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 use Doctrine\Common\Persistence\ObjectManager;
+
 use App\Form\CommentType;
 use App\Entity\Article;
 use App\Entity\Category;
@@ -24,13 +23,13 @@ use App\Repository\UserRepository;
 class CatalogController extends AbstractController {
 
     /**
-     * @Route("/catalogue", name="blog")
+     * @Route("/catalogue", name="catalogue")
      */
     public function index(ArticleRepository $repo, UserRepository $user) {
 
         $articles = $repo->findAll();
         
-        return $this->render('blog/index.html.twig', [
+        return $this->render('pages/index.html.twig', [
             'controller_name' => 'CatalogController',
             'articles' => $articles
         ]);
@@ -40,14 +39,14 @@ class CatalogController extends AbstractController {
      * @Route("/", name="home")
      */
     public function home() {
-        return $this->render('blog/home.html.twig');
+        return $this->render('pages/home.html.twig');
     }
 
     /**
      * @Route("/about", name="about")
      */
     public function about() {
-        return $this->render('blog/about.html.twig');
+        return $this->render('pages/about.html.twig');
     }
 
     /**
@@ -104,7 +103,7 @@ class CatalogController extends AbstractController {
             return $this->redirectToRoute('blog_show', ['id' => $article->getId()]);
         }
 
-        return $this->render('blog/create.html.twig', [
+        return $this->render('admin/create.html.twig', [
             'formArticle' => $form->createView(),
             'editMode' => $article->getId() !== null
         ]);
@@ -137,7 +136,7 @@ class CatalogController extends AbstractController {
             ]);
         }
 
-        return $this->render('blog/show.html.twig', [
+        return $this->render('pages/show.html.twig', [
             'article' => $article,
             'commentForm' => $form->createView()
         ]);
@@ -156,17 +155,17 @@ class CatalogController extends AbstractController {
             'L\'élément a été supprimé.'
         );
 
-        return $this->redirectToRoute('blog');
+        return $this->redirectToRoute('catalogue');
     }
 
     /**
-     * @Route("catalogue/list/category", name="list_category")
+     * @Route("catalogue/list", name="list_category")
      */
     public function listCategory(ArticleRepository $repo, UserRepository $user) {
 
         $articles = $repo->findAll();
 
-        return $this->render('blog/category.html.twig', [
+        return $this->render('pages/category.html.twig', [
             'controller_name' => 'CatalogController',
             'articles' => $articles
         ]);

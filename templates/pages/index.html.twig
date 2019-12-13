@@ -6,7 +6,7 @@
 
     {% for message in app.flashes('item_deleted') %}
         <div class="alert alert-light">
-            {{ message }} <a href="{{ path('blog') }}"><span class="close_x">&#10005;</span></a>
+            {{ message }} <a href="{{ path('catalogue') }}"><span class="close_x">&#10005;</span></a>
         </div>
     {% endfor %}
 
