@@ -1,4 +1,4 @@
-{% extends 'base-admin.html.twig' %}
+{% extends 'layout/base-admin.html.twig' %}
 
 {% block body %}
 
@@ -16,13 +16,13 @@
                 <h1>Tableau de bord - Admin</h1>
                 <hr><br>
                 <h3>Gestion catalogue</h3>
-                <a href="{{ path('catalogue') }}" class="btn btn-light">Liste des éléments</a> &nbsp; <a href="{{ path('blog_create') }}" class="btn btn-light">Insérer un élément</a>
+                <a href="{{ path('catalogue') }}" class="btn btn-light mb-30">Liste des éléments</a> &nbsp; <a href="{{ path('blog_create') }}" class="btn btn-light mb-30">Insérer un élément</a>
                 
                 <h3>Gestion commentaires</h3>
-                <a href="{{ path('catalogue') }}" class="btn btn-light">Commentaires signalés</a>
+                <a href="{{ path('catalogue') }}" class="btn btn-light mb-30">Commentaires signalés</a>
                 
                 <h3>Gestion users</h3>
-                <a href="{{ path('list_users') }}" class="btn btn-light">Liste des utilisateurs inscrits</a>
+                <a href="{{ path('list_users') }}" class="btn btn-light mb-30">Liste des utilisateurs inscrits</a>
 
             </div>
 

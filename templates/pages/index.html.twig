@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout/base.html.twig' %}
 
 {% block title %}Catalogue{% endblock %}
 
@@ -13,14 +13,14 @@
     <section class="articles">
 
         <div class="tri text-right">
-            <b class="mr-50"><a href="{{ path('list_category') }}">Trier par catégorie</a></b>
+            <b class="mr-50"><a href="{{ path('catalogue') }}">Trier par catégorie</a></b>
         </div><br>
 
         {% for article in articles %}
             <article class="catalog_list draggable">
                 <div class="content">
                     {% if app.user %}
-                        <a href="{{ path('blog_show', {'id': article.id}) }}" title="{{ article.artist }} - {{ article.title }}"><img src="{{ article.image }}" alt="">
+                        <a href="{{ path('blog_show', {'slug': article.slug}) }}" title="{{ article.artist }} - {{ article.title }}"><img src="{{ article.image }}" alt="">
                         <div class="overlay">
                             <div class="text">{{ article.artist }} - {{ article.title }}</div>
                         </div></a>

@@ -1,22 +1,22 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout/base.html.twig' %}
 
 {% block body %} 
 
     {% for message in app.flashes('post') %}
         <div class="alert alert-light">
-            {{ message }} <a href="{{ path('blog_show', { 'id': article.id}) }}"><span class="close_x">&#10005;</span></a>
+            {{ message }} <a href="{{ path('blog_show', { 'slug': article.slug}) }}"><span class="close_x">&#10005;</span></a>
         </div>
     {% endfor %}
 
     {% for message in app.flashes('repost') %}
         <div class="alert alert-light">
-            {{ message }} <a href="{{ path('blog_show', { 'id': article.id}) }}"><span class="close_x">&#10005;</span></a>
+            {{ message }} <a href="{{ path('blog_show', { 'slug': article.slug}) }}"><span class="close_x">&#10005;</span></a>
         </div>
     {% endfor %}
 
     {% for message in app.flashes('comment') %}
         <div class="alert alert-light">
-            {{ message }} <a href="{{ path('blog_show', { 'id': article.id}) }}"><span class="close_x">&#10005;</span></a>
+            {{ message }} <a href="{{ path('blog_show', { 'slug': article.slug}) }}"><span class="close_x">&#10005;</span></a>
         </div>
     {% endfor %}
 

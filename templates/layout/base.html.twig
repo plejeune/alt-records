@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>&#9886; ALT &#9887;</title>
+        <link rel="stylesheet" href="{{ asset('assets/bootstrap/bootstrap-4.4.1.min.css') }}">
+        <link rel="stylesheet/less" type="text/css" href="{{ asset('assets/less/styles.css') }}" />
+        <script src="{{ asset('assets/js/jquery-3.4.1.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery-ui-1.12.1.min.js') }}"></script>
+        <script src="{{ asset('assets/js/less-3.9.0.min.js') }}"></script>
+
+        <!-- CRISP Chatbox -->
+        <script type="text/javascript"> window.$crisp=[];window.CRISP_WEBSITE_ID="0afd79ae-3f0e-45a1-914e-7c01dad73672";(function(){ d=document;s=d.createElement("script"); s.src="https://client.crisp.chat/l.js"; s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})(); </script>
+        <!-- End CRISP -->
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{{ path('home') }}"><b>&#9886; ALT RECORDS &#9887;</b></a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+
+                    <li class="nav-item">
+                        <a href="{{ path('about') }}" class="nav-link">&#9826; A propos</a>
+                    </li>
+
+                    {% if not app.user %}
+
+                        <li class="nav-item">
+                            <a href="{{ path('security_registration') }}" class="nav-link">&#9826; Inscription</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('security_login') }}" class="nav-link">&#9826; Connexion</a>
+                        </li>
+
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('catalogue') }}">&#9826; Catalogue</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a href="{{ path('my_account', {'id': app.user.id, 'username': app.user.username}) }}" class="nav-link">&#9826; Mon compte</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('contact') }}" class="nav-link">&#9826; Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ path('security_logout') }}" class="nav-link">&#9826; Déconnexion</a>
+                        </li>
+
+                    {% endif %}
+
+                    <li class="nav-item">
+                        <a href="{{ path('security_admin') }}" class="nav-link"><img src="{{ asset('assets/images/lock.png') }}"> Admin</a>
+                    </li>
+
+                    <form class="form-inline my-2 my-lg-0 align-right absolute" role="search" method="post" action="">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search" name="search">
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                    
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
+        {% block javascripts %}{% endblock %}
+    </body>
+    
+    
+</html>

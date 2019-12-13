@@ -23,7 +23,7 @@ use App\Repository\UserRepository;
 class CatalogController extends AbstractController {
 
     /**
-     * @Route("/catalogue", name="catalogue")
+     * @Route("/catalogue", name="_catalogue")
      */
     public function index(ArticleRepository $repo, UserRepository $user) {
 
@@ -100,7 +100,7 @@ class CatalogController extends AbstractController {
             $manager->persist($article);
             $manager->flush();
 
-            return $this->redirectToRoute('blog_show', ['id' => $article->getId()]);
+            return $this->redirectToRoute('blog_show', ['slug' => $article->getSlug()]);
         }
 
         return $this->render('admin/create.html.twig', [
@@ -110,7 +110,7 @@ class CatalogController extends AbstractController {
     }
     
     /**
-     * @Route("/catalogue/item/{id}", name="blog_show")
+     * @Route("/catalogue/item/{slug}", name="blog_show")
      */
     public function show(Article $article, Request $request, ObjectManager $manager) {
         
@@ -132,7 +132,7 @@ class CatalogController extends AbstractController {
             );
 
             return $this->redirectToRoute('blog_show', [
-                'id' => $article->getId()
+                'slug' => $article->getSlug()
             ]);
         }
 
@@ -159,7 +159,7 @@ class CatalogController extends AbstractController {
     }
 
     /**
-     * @Route("catalogue/list", name="list_category")
+     * @Route("catalogue/list", name="catalogue")
      */
     public function listCategory(ArticleRepository $repo, UserRepository $user) {
 

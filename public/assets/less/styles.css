@@ -1,0 +1,182 @@
+
+/* Import */
+
+@import "modules/color.less";
+@import "modules/data.less";
+@import "modules/form.less";
+@import "modules/height.less";
+@import "modules/iframe.less";
+@import "modules/margin.less";
+@import "modules/navbar.less";
+@import "modules/overlay.less";
+@import "modules/position.less";
+@import "modules/text.less";
+@import "modules/width.less";
+
+
+/* General */
+
+body {
+    background-image: url(../images/alt_bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.bg-admin {
+    background-image: url();
+    background-color: lightgray;
+}
+
+.about p {
+    font-size: 16px;
+}
+
+.catalog_list {
+    float: left;
+    margin: 10px;
+}
+
+.catalog_list img {
+    width: 250px;
+    height: 250px;
+}
+
+.catalog_list img:hover {
+    opacity: .8;
+}
+
+#articles {
+    background-color: rgba(255,255,255,.5);
+    padding: 20px;
+}
+
+#commentaires {
+    background-image:linear-gradient(rgba(255,255,255, .5),rgba(255,255,255, 1));
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+#comment_author {
+    display: none;
+}
+
+#articles img {
+    width: 450px;
+    height: 450px;
+}
+
+.item {
+    height: 1150px;
+}
+
+.description {
+    line-height: 20px;
+}
+
+.description h4 {
+    font-weight: 100;
+    font-size: 12px;
+    color: grey;
+    margin-top: 20px;
+}
+
+.home-title {
+    font-size: 100px;
+    margin-bottom: 10px;
+    padding-top: 20px;
+}
+
+.close_x {
+    position: absolute;
+    right: 1.5%;
+    color: gray;
+}
+
+.close_x:hover {
+    font-weight: bold;
+    color: green;
+    text-decoration: none;
+}
+
+.delete-window {
+    background-color: rgba(0,0,0,.85);
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    z-index: 999;
+    display: none;
+}
+
+.window-info {
+    background-color: lightgrey;
+    padding: 20px;
+}
+
+.line {
+    background-color: lightgrey; 
+    width: 100%;
+    height: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.login, .subscribe, .about, .mydata, .create, .admin, .userlist {
+    background-image:linear-gradient(rgba(255,255,255, .5),rgba(255,255,255, 0));
+    box-shadow: 0 -15px 20px -10px darkgray;
+    width: 100%;
+    height: 350px;
+    padding: 20px;
+}
+
+.admin, .userlist {
+    background-image:linear-gradient(rgba(255,255,255, .3),rgba(255,255,255, 0));
+}
+
+.subscribe {
+    height: 450px;
+}
+
+.create {
+    height: 550px;
+}
+
+.about {
+    height: 400px;
+}
+
+.sub-options {
+    display: none;
+}
+
+.sub-options div {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.item-info {
+    font-size: 15px;
+}
+
+  footer {
+      float: left;
+      bottom: 0;
+      width: 100%;
+      height: 30px;
+      text-align: center;
+}
+
+  .footer-copyright {
+      color: #fff;
+      text-align: center;
+}
+
+
+
+
+
+
+

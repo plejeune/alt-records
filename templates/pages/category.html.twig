@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout/base.html.twig' %}
 
 {% block body %}
 
@@ -19,7 +19,7 @@
                 {% if article.category.description == "Pop" %}
                     <article class="catalog_list">
                         <div class="content">
-                            <a href="{{ path('blog_show', {'id': article.id}) }}" title="{{ article.artist }} - {{ article.title }}"><img src="{{ article.image }}" alt="">   
+                            <a href="{{ path('blog_show', {'slug': article.slug}) }}" title="{{ article.artist }} - {{ article.title }}"><img src="{{ article.image }}" alt="">   
                             <div class="overlay">
                                 <div class="text">{{ article.artist }} - {{ article.title }}</div>
                             </div></a>
@@ -34,7 +34,7 @@
                 {% if article.category.description == "Rock" %}
                     <article class="catalog_list">
                         <div class="content">
-                            <a href="{{ path('blog_show', {'id': article.id}) }}" title="{{ article.artist }} - {{ article.title }}"><img src="{{ article.image }}" alt="">   
+                            <a href="{{ path('blog_show', {'slug': article.slug}) }}" title="{{ article.artist }} - {{ article.title }}"><img src="{{ article.image }}" alt="">   
                             <div class="overlay">
                                 <div class="text">{{ article.artist }} - {{ article.title }}</div>
                             </div></a>
@@ -49,7 +49,7 @@
                 {% if article.category.description == "Metal" %}
                     <article class="catalog_list">
                         <div class="content">
-                            <a href="{{ path('blog_show', {'id': article.id}) }}" title="{{ article.artist }} - {{ article.title }}"><img src="{{ article.image }}" alt="">   
+                            <a href="{{ path('blog_show', {'slug': article.slug}) }}" title="{{ article.artist }} - {{ article.title }}"><img src="{{ article.image }}" alt="">   
                             <div class="overlay">
                                 <div class="text">{{ article.artist }} - {{ article.title }}</div>
                             </div></a>
@@ -64,7 +64,7 @@
                 {% if article.category.description == "Grunge" %}
                     <article class="catalog_list">
                         <div class="content">
-                            <a href="{{ path('blog_show', {'id': article.id}) }}" title="{{ article.artist }} - {{ article.title }}"><img src="{{ article.image }}" alt="">   
+                            <a href="{{ path('blog_show', {'slug': article.slug}) }}" title="{{ article.artist }} - {{ article.title }}"><img src="{{ article.image }}" alt="">   
                             <div class="overlay">
                                 <div class="text">{{ article.artist }} - {{ article.title }}</div>
                             </div></a>

@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout/base.html.twig' %}
 
 {% block body %}
     
@@ -22,7 +22,7 @@
             {% if not editMode %}
                 {{ form_row(form.password, {'attr': {'placeholder': 'Mot de passe'}}) }}
             {% else %}
-                {{ form_row(form.password, {'attr': {'placeholder': 'Confirmez votre mot de passe ou entrez-en un nouveau'}}) }}
+                {{ form_row(form.password, {'attr': {'placeholder': 'Confirmez votre mot de passe ou créez un nouveau'}}) }}
             {% endif %}
 
             <button type="submit" class="btn btn-success mg-50">

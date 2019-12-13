@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
@@ -24,6 +25,15 @@ class Article
      * @Assert\Length(min=2, max=255, minMessage="Titre trop court ! (2 caractères minimum)")
      */
     private $title;
+
+    /**
+     * @var string
+     * 
+     * @Gedmo\Slug(fields={"artist", "title"})
+     * 
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $slug;
 
     /**
      * @ORM\Column(type="text")
@@ -107,6 +117,18 @@ class Article
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
