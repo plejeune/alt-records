@@ -36,7 +36,7 @@
                 <hr>
                 {% if app.user.role == "ROLE_ADMIN" %}
                     <h4>&#8886; Version : 1.0.1 &nbsp; &nbsp; &nbsp; &#8892; Statut : [ vous êtes <b>admin</b> ] &nbsp; &nbsp; &nbsp; &#8795; /PWD 2019-20</h4>
-           
+
                 {% elseif app.user.role == "ROLE_USER"%}
                     <h4>&#8886; Version : 1.0.1 &nbsp; &nbsp; &nbsp; &#8892; Statut : [ vous êtes <b>simple user</b> ] &nbsp; &nbsp; &nbsp; &#8795; /PWD 2019-20</h4>
                 {% endif %}

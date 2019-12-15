@@ -32,7 +32,11 @@
                 {% endif %}
             </button>
 
-            &nbsp; <a href="{{ path('catalogue') }}" class="btn btn-light">Annuler</a>
+            {% if editMode %}
+                &nbsp; <a href="{{ path('blog_show', {'slug': article.slug}) }}" class="btn btn-light">Annuler</a>
+            {% else %}
+                &nbsp; <a href="{{ path('security_admin') }}" class="btn btn-light">Annuler</a>
+            {% endif %}
 
         </div>
 

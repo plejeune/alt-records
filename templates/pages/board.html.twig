@@ -13,12 +13,12 @@
         {% if app.user %}
 
             <div class="mt-10 mydata">
+
                 <h1>Mon compte</h1>
                 <hr>
                 <img class="float-l mg-30 ml-75 mr-50" src="{{ app.user.image }}">
 
-                <div class="mg-10 float-l data">
-                    
+                <div class="mg-10 float-l data">        
                     <table id="data-table">
                         <tr>
                             <td class="lightgrey">Nom d'utilisateur</td>
@@ -45,29 +45,23 @@
                             <td><b>{{ app.user.createdAt | date ('d/m/Y à H:i') }}</b></td>
                         </tr>
                     </table>
-
                     <div class="data-description">
                         <p class="lightgrey">Description</p>
                         <b>{{ app.user.description }}</b>
-                    </div>
-                    
+                    </div>   
                 </div>
 
                 <div class="nav-btn text-right">
-
                     <div class="btn btn-success btn-sm float-l option ml-20 param-1">1</div> 
                     <div class="btn btn-light btn-sm float-l option param-2">2</div>
-
                 </div>
                     
-                <div class="parameters text-right">
-                    
+                <div class="parameters text-right">    
                     <div class="options_btn">
                         <div class="btn btn-light btn-sm option_btn">
                             &#11093; Options
                         </div>
-                        <div class="sub-options">
-                        <br>
+                        <div class="sub-options"><br>
                             <div class="edit_btn">
                                 <a href="{{ path('security_account', {'username': app.user.username, 'id': app.user.id}) }}" class="btn btn-light btn-sm">Modifier les infos</a>
                             </div>
@@ -85,7 +79,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="delete-window">
@@ -98,46 +91,15 @@
 
             </div>
 
-            
-
         {% else %}
-
         {% endif %}
 
     {% endblock %}
 
+    {# Boutons d'action gérés dans le script action.js #}
+
     {% block javascripts %}
-        <script>
-            $( ".param-1" ).on( "click", function() {
-                $("#data-table").show();
-                $(".data-description").hide();
-                $('.param-1').removeClass('btn-light').addClass('btn-success');
-                $('.param-2').removeClass('btn-success').addClass('btn-light');
-            });
-
-            $( ".param-2" ).on( "click", function() {
-                $("#data-table").hide();
-                $(".data-description").show();
-                $('.param-1').removeClass('btn-success').addClass('btn-light');
-                $('.param-2').removeClass('btn-light').addClass('btn-success');
-            });
-
-            $( ".option_btn" ).on( "click", function() {
-                $(".sub-options").show();
-            });
-
-            $( ".sub-options" ).mouseleave(function() {
-                $(".sub-options").hide();
-            });
-
-            $( ".del_btn" ).on( "click", function() {
-                $(".delete-window").show();
-            });
-
-            $( ".cancel" ).on( "click", function() {
-                $(".delete-window").hide();
-            });
-        </script>
+        <script src="{{ asset('assets/js/action.js') }}"></script>
     {% endblock %}
 
 {% endblock %}

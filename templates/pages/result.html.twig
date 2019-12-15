@@ -1,0 +1,37 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block body %}
+
+    <section class="">
+
+        <h2 class="ml-20">Résultats de votre recherche pour "{{ query }}"</h2>
+        <h4 class="ml-20 mb-20 text-warning">
+            {{ articles | length }}
+            {% if articles | length <= "1" %}
+                élément trouvé :
+            {% else %}
+                éléments trouvés :
+            {% endif %}
+        </h4>
+
+        <div class="container">
+            {% for article in articles %}
+                <article class="catalog_list">
+                    <div class="content">
+                        {% if app.user %}
+                            <a href="{{ path('blog_show', {'slug': article.slug}) }}"><img src="{{ article.image }}" alt=""></a>
+                        {% else %}
+                            <a href="{{ path('security_login') }}"><img src="{{ article.image }}" alt=""></a>
+                        {% endif %}
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+
+        <div class="clear">
+            <a href="{{ path('search') }}" class="btn btn-light btn-sm ml-20 mg-20">Nouvelle recherche</a>
+        </div>
+
+    </section>
+
+{% endblock %}

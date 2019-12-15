@@ -2,7 +2,7 @@
 
 {% block body %}
     
-      <div class="mt-10 subscribe">
+    <div class="mt-10 subscribe">
 
         <div class="w-49">
 
@@ -38,7 +38,7 @@
             {% else %}
                 &nbsp; <a href="{{ path('home') }}" class="btn btn-light mg-50">Annuler</a>
             {% endif %}
-          
+
         </div>
 
         <div class="mt-6 w-49 ml-20">
@@ -46,7 +46,7 @@
             {{ form_row(form.image, {'attr': {'placeholder': 'Image de profil (URL)'}}) }}
             {{ form_row(form.description, {'attr': {'placeholder': 'Qui suis-je ? (Décrivez-vous en minimum 20 caractères)'}}) }}
             
-             {% if editMode %}
+            {% if editMode %}
 
                 <div></div>
                 <div></div>
@@ -67,7 +67,7 @@
             {{ form_end(form) }}
             
         </div>
- 
-      </div>
+        
+    </div>
 
 {% endblock %}

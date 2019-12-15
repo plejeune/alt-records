@@ -47,7 +47,7 @@ class Article
      */
     private $image;
 
-     /**
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $artist;

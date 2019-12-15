@@ -19,14 +19,14 @@ class ContactController extends AbstractController {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
- 
+
             $contactFormData = $form->getData();
- 
+
             $message = (new \Swift_Message('You Got Mail!'))
-               ->setFrom(['info@altrecords.com' => 'ALT RECORDS'])
-               ->setTo('pierre.lejeune.ipeps@gmail.com')
-               ->setSubject('Notifications ALT RECORDS - Nouveau message reçu de l\'utilisateur [' . $contactFormData['name'] . ']')
-               ->setBody('Le message reçu de [' . $contactFormData['name'] . '] est le suivant : ' . $contactFormData['message'],'text/plain')
+                ->setFrom(['info@altrecords.com' => 'ALT RECORDS'])
+                ->setTo('pierre.lejeune.ipeps@gmail.com')
+                ->setSubject('Notifications ALT RECORDS - Nouveau message reçu de l\'utilisateur [' . $contactFormData['name'] . ']')
+                ->setBody('Le message reçu de [' . $contactFormData['name'] . '] est le suivant : ' . $contactFormData['message'],'text/plain')
             ;
 
             $mailer->send($message);

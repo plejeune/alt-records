@@ -77,74 +77,21 @@
 
         {% endfor %}
 
+        <footer class="page-footer font-small">
+            <div class="footer-copyright text-center py-3">
+<!--                <p>© 2019-20 ALT Records</p> -->
+            </div>
+        </footer>
+
     {% else %}
         <p>Vous n'avez pas accès à cette page</p>
         <a href="{{ path('home') }}" class="btn btn-light">&#8617; Retour</a>
     {% endif %}
 
+    {# Boutons d'action gérés dans le script action.js #}
+
     {% block javascripts %}
-        <script>
-
-            $( ".btn-all" ).on( "click", function() {
-                $(".Rock").show();
-                $(".Pop").show();
-                $(".Metal").show();
-                $(".Grunge").show();
-                $('.btn-rock').removeClass('btn-success').addClass('btn-light');
-                $('.btn-pop').removeClass('btn-success').addClass('btn-light');
-                $('.btn-metal').removeClass('btn-success').addClass('btn-light');
-                $('.btn-grunge').removeClass('btn-success').addClass('btn-light');
-                $('.btn-all').removeClass('btn-light').addClass('btn-success');
-            });
-
-            $( ".btn-rock" ).on( "click", function() {
-                $(".Rock").show();
-                $(".Pop").hide();
-                $(".Metal").hide();
-                $(".Grunge").hide();
-                $('.btn-rock').removeClass('btn-light').addClass('btn-success');
-                $('.btn-pop').removeClass('btn-success').addClass('btn-light');
-                $('.btn-metal').removeClass('btn-success').addClass('btn-light');
-                $('.btn-grunge').removeClass('btn-success').addClass('btn-light');
-                $('.btn-all').removeClass('btn-success').addClass('btn-light');
-            });
-
-            $( ".btn-pop" ).on( "click", function() {
-                $(".Rock").hide();
-                $(".Pop").show();
-                $(".Metal").hide();
-                $(".Grunge").hide();
-                $('.btn-pop').removeClass('btn-light').addClass('btn-success');
-                $('.btn-rock').removeClass('btn-success').addClass('btn-light');
-                $('.btn-metal').removeClass('btn-success').addClass('btn-light');
-                $('.btn-grunge').removeClass('btn-success').addClass('btn-light');
-                $('.btn-all').removeClass('btn-success').addClass('btn-light');
-            });
-
-            $( ".btn-metal" ).on( "click", function() {
-                $(".Rock").hide();
-                $(".Pop").hide();
-                $(".Metal").show();
-                $(".Grunge").hide();
-                $('.btn-metal').removeClass('btn-light').addClass('btn-success');
-                $('.btn-pop').removeClass('btn-success').addClass('btn-light');
-                $('.btn-rock').removeClass('btn-success').addClass('btn-light');
-                $('.btn-grunge').removeClass('btn-success').addClass('btn-light');
-                $('.btn-all').removeClass('btn-success').addClass('btn-light');
-            });
-
-            $( ".btn-grunge" ).on( "click", function() {
-                $(".Rock").hide();
-                $(".Pop").hide();
-                $(".Metal").hide();
-                $(".Grunge").show();
-                $('.btn-grunge').removeClass('btn-light').addClass('btn-success');
-                $('.btn-pop').removeClass('btn-success').addClass('btn-light');
-                $('.btn-metal').removeClass('btn-success').addClass('btn-light');
-                $('.btn-rock').removeClass('btn-success').addClass('btn-light');
-                $('.btn-all').removeClass('btn-success').addClass('btn-light');
-            });
-        </script>
+        <script src="{{ asset('assets/js/action.js') }}"></script>
     {% endblock %}
 
 {% endblock %}

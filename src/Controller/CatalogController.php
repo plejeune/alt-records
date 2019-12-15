@@ -60,20 +60,20 @@ class CatalogController extends AbstractController {
         }
 
         $form = $this->createFormBuilder($article)
-                     ->add('author')
-                     ->add('artist')
-                     ->add('title')
-                     ->add('album')
-                     ->add('category', EntityType::class, [
-                         'class' => Category::class,
-                         'choice_label' => 'title'
-                     ])
-                     ->add('year')
-                     ->add('content')
-                     ->add('image')
-                     ->add('video')
-                     ->add('credits')
-                     ->getForm();
+                    ->add('author')
+                    ->add('artist')
+                    ->add('title')
+                    ->add('album')
+                    ->add('category', EntityType::class, [
+                        'class' => Category::class,
+                        'choice_label' => 'title'
+                    ])
+                    ->add('year')
+                    ->add('content')
+                    ->add('image')
+                    ->add('video')
+                    ->add('credits')
+                    ->getForm();
 
         $form->handleRequest($request); 
 
@@ -105,6 +105,7 @@ class CatalogController extends AbstractController {
 
         return $this->render('admin/create.html.twig', [
             'formArticle' => $form->createView(),
+            'article' => $article,
             'editMode' => $article->getId() !== null
         ]);
     }
