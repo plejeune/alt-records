@@ -13,7 +13,7 @@
     <body class="bg-admin">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-            <a class="navbar-brand" href="{{ path('home') }}"><b>&#9886; ALT RECORDS &#9887;</b></a>
+            <a class="navbar-brand" href="{{ path('security_admin') }}"><b>&#9886; ALT RECORDS<span class="lightgrey">::ADMIN</span> &#9887;</b></a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
             </button>
@@ -32,11 +32,9 @@
                         <li class="nav-item">
                             <a href="{{ path('security_logout') }}" class="nav-link">&#9826; Déconnexion</a>
                         </li>
-                        
-                        <form class="form-inline my-2 my-lg-0 align-right absolute" role="search" method="post" action="">
-                            <input class="form-control mr-sm-2" type="text" placeholder="Search" name="search">
-                            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                        </form>
+                        <a href="https://github.com/plejeune/alt-records" target="_blank">
+                            <button class="btn btn-outline-light my-2 my-sm-0 align-right absolute" type="submit">&#10140; Github</button>
+                        </a>
 
                     {% else %}
 

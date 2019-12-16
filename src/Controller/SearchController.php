@@ -19,7 +19,7 @@ class SearchController extends AbstractController
     public function searchBar(ArticleRepository $articleRepository) {
         $formBuilder = $this->createFormBuilder(null);
         
-        $formBuilder->setAction($this->generateUrl('handleSearch'))
+        $formBuilder->setAction($this->generateUrl('search_result'))
             ->add('query', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Entrez un artiste, un titre, une année...'
@@ -33,13 +33,13 @@ class SearchController extends AbstractController
         
         $form = $formBuilder->getForm();
 
-        return $this->render('pages/search.html.twig', [
+        return $this->render('search/search.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/handleSearch", name="handleSearch")
+     * @Route("/search/result", name="search_result")
      */
     public function handleSearch(Request $request, ArticleRepository $articleRepository) {
         
@@ -51,7 +51,7 @@ class SearchController extends AbstractController
             );
         }
 
-        return $this->render('pages/result.html.twig', [
+        return $this->render('search/result.html.twig', [
             'articles' => $articles,
             'query' => $query
         ]);

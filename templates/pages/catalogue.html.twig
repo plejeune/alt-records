@@ -1,17 +1,25 @@
 {% extends 'layout/base.html.twig' %}
 
+{% block title %}Catalogue{% endblock %}
+
 {% block body %}
 
-    <div class="tri text-right mr-50">
-        <b>Trier par catégorie : &nbsp;</b>
-        <div class="btn btn-success btn-sm btn-all capitalize">Tout</div> &nbsp; <b>/</b> &nbsp;
-        <div class="btn btn-light btn-sm btn-rock">Rock</div>
-        <div class="btn btn-light btn-sm btn-pop">Pop</div>
-        <div class="btn btn-light btn-sm btn-metal">Metal</div>
-        <div class="btn btn-light btn-sm btn-grunge">Grunge</div>
-    </div><br>
+    {% for message in app.flashes('item_deleted') %}
+        <div class="alert alert-light">
+            {{ message }} <a href="{{ path('catalogue') }}"><span class="close_x">&#10005;</span></a>
+        </div>
+    {% endfor %}
 
     {% if app.user %}
+
+        <div class="tri text-right mr-50">
+            <b>Trier par catégorie : &nbsp;</b>
+            <div class="btn btn-success btn-sm btn-all capitalize">Tout</div> &nbsp; <b>/</b> &nbsp;
+            <div class="btn btn-light btn-sm btn-rock">Rock</div>
+            <div class="btn btn-light btn-sm btn-pop">Pop</div>
+            <div class="btn btn-light btn-sm btn-metal">Metal</div>
+            <div class="btn btn-light btn-sm btn-grunge">Grunge</div>
+        </div><br>
         
         {% for article in articles %}
 

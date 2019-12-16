@@ -10,9 +10,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\HttpFoundation\Session\Session;
-
 use Doctrine\Common\Persistence\ObjectManager;
-
 use App\Entity\User;
 use App\Form\RegistrationType;
 use App\Repository\UserRepository;
@@ -29,7 +27,7 @@ class SecurityController extends AbstractController {
             $user = new User();
         }
 
-        $form = $this->createForm(registrationType::class, $user);
+        $form = $this->createForm(RegistrationType::class, $user);
 
         $form->handleRequest($request);
 
@@ -107,68 +105,6 @@ class SecurityController extends AbstractController {
 
         return $this->render('security/logout.html.twig');
         
-    }
-
-    /**
-     * @Route("/profile", name="my_account")
-     */
-    public function myaccount(UserRepository $repo) {
-
-        $users = $repo->findAll();
-
-        return $this->render('pages/board.html.twig', [
-            'users' => $users
-        ]);
-    }
-
-    /**
-     * @Route("/profile/delete/{id}", name="account_delete")
-     */
-    public function delete(User $user, ObjectManager $manager) {
-        
-        $manager->remove($user);
-        $manager->flush();
-
-        $session = $this->get('session');
-        $session = new Session();
-
-        $this->addFlash(
-            'account_deleted',
-            'Le compte a été supprimé'
-        );
-
-        $session->invalidate();
-
-        return $this->redirectToRoute('user_deleted');
-    }
-
-    /**
-     * @Route("profile/deleted", name="user_deleted")
-     */
-    public function userDeleted() {
-
-        return $this->render('admin/delete.html.twig');
-    }
-
-    /**
-     * @Route("/admin", name="security_admin")
-     */
-    public function admin() {
-
-        return $this->render('admin/admin.html.twig');
-    }
-
-    /**
-     * @Route("/admin/list/users", name="list_users")
-     */
-    public function listUsers(UserRepository $repo) {
-
-        $users = $repo->findAll();
-
-        return $this->render('admin/users.html.twig', [
-            'users' => $users
-        ]);
-
     }
 
 }

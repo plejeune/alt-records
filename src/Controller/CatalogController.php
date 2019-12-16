@@ -10,10 +10,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-
 use Doctrine\Common\Persistence\ObjectManager;
-
 use App\Form\CommentType;
+use App\Form\ArticleType;
 use App\Entity\Article;
 use App\Entity\Category;
 use App\Entity\Comment;
@@ -23,9 +22,9 @@ use App\Repository\UserRepository;
 class CatalogController extends AbstractController {
 
     /**
-     * @Route("/catalogue", name="_catalogue")
+     * @Route("/catalogue", name="catalogue_list")
      */
-    public function index(ArticleRepository $repo, UserRepository $user) {
+    public function index(ArticleRepository $repo) {
 
         $articles = $repo->findAll();
         
@@ -33,20 +32,6 @@ class CatalogController extends AbstractController {
             'controller_name' => 'CatalogController',
             'articles' => $articles
         ]);
-    }
-
-    /**
-     * @Route("/", name="home")
-     */
-    public function home() {
-        return $this->render('pages/home.html.twig');
-    }
-
-    /**
-     * @Route("/about", name="about")
-     */
-    public function about() {
-        return $this->render('pages/about.html.twig');
     }
 
     /**
@@ -59,21 +44,7 @@ class CatalogController extends AbstractController {
             $article = new Article();
         }
 
-        $form = $this->createFormBuilder($article)
-                    ->add('author')
-                    ->add('artist')
-                    ->add('title')
-                    ->add('album')
-                    ->add('category', EntityType::class, [
-                        'class' => Category::class,
-                        'choice_label' => 'title'
-                    ])
-                    ->add('year')
-                    ->add('content')
-                    ->add('image')
-                    ->add('video')
-                    ->add('credits')
-                    ->getForm();
+        $form = $this->createForm(ArticleType::class, $article);
 
         $form->handleRequest($request); 
 
@@ -162,11 +133,11 @@ class CatalogController extends AbstractController {
     /**
      * @Route("catalogue/list", name="catalogue")
      */
-    public function listCategory(ArticleRepository $repo, UserRepository $user) {
+    public function catalogueList(ArticleRepository $repo) {
 
         $articles = $repo->findAll();
 
-        return $this->render('pages/category.html.twig', [
+        return $this->render('pages/catalogue.html.twig', [
             'controller_name' => 'CatalogController',
             'articles' => $articles
         ]);

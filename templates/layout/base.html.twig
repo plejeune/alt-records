@@ -55,13 +55,12 @@
                     {% endif %}
 
                     <li class="nav-item">
-                        <a href="{{ path('security_admin') }}" class="nav-link"><img src="{{ asset('assets/images/lock.png') }}"> Admin</a>
+                        <a href="{{ path('security_admin') }}" class="nav-link">&#x1F512; Admin</a>
                     </li>
 
-                    <form class="form-inline my-2 my-lg-0 align-right absolute" role="search" method="post" action="">
-                        <input class="form-control mr-sm-2" type="text" placeholder="Search" name="search">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                    </form>
+                    <a href="{{ path('search') }}">
+                        <button class="btn btn-secondary align-right absolute" type="submit">&#x1F50D; Rechercher</button>
+                    </a>
                     
                 </ul>
             </div>

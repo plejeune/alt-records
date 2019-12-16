@@ -4,12 +4,6 @@
 
 {% block body %}
 
-    {% for message in app.flashes('item_deleted') %}
-        <div class="alert alert-light">
-            {{ message }} <a href="{{ path('catalogue') }}"><span class="close_x">&#10005;</span></a>
-        </div>
-    {% endfor %}
-
     <section class="articles">
 
         <div class="tri text-right">
@@ -38,14 +32,6 @@
             <p>© 2019-20 ALT Records</p>
         </div>
     </footer>
-
-    <script>
-        $( ".draggable" ).draggable({
-            
-        });
-    </script>
-
-    
 
 {% endblock %}
 
