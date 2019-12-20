@@ -63,6 +63,11 @@ class User implements UserInterface
      */
     private $createdAt;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $active;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -148,6 +153,18 @@ class User implements UserInterface
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getActive(): ?string
+    {
+        return $this->active;
+    }
+
+    public function setActive(string $active): self
+    {
+        $this->active = $active;
 
         return $this;
     }

@@ -40,8 +40,7 @@ class ContactController extends AbstractController {
         }
 
         return $this->render('contact/contact.html.twig', [
-            'contact_form' => $form,
-            'contact_form' => $form->createView(),
+            'contact_form' => $form->createView()
         ]);
     }
 }

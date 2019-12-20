@@ -2,8 +2,6 @@ security:
     encoders:
         App\Entity\User:
             algorithm: auto
-        App\Entity\Admin:
-            algorithm: auto
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
@@ -40,4 +38,4 @@ security:
         - { path: ^/catalogue, roles: ROLE_USER }
       # - { path: ^/catalogue/item/edit, roles: ROLE_ADMIN }
       # - { path: ^/admin, roles: ROLE_ADMIN }
-      # - { path: ^/profile, roles: ROLE_USER }
+      #  - { path: ^/profile, roles: ROLE_USER }

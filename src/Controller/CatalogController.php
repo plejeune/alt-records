@@ -6,16 +6,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Form\CommentType;
+use App\Form\TagType;
 use App\Form\ArticleType;
 use App\Entity\Article;
 use App\Entity\Category;
 use App\Entity\Comment;
+use App\Entity\Tag;
 use App\Repository\ArticleRepository;
 use App\Repository\UserRepository;
 
@@ -61,7 +60,6 @@ class CatalogController extends AbstractController {
 
             else {
                 $article->setModifiedAt(new \DateTime());
-
                 $this->addFlash(
                     'repost',
                     'Les modifications ont été enregistrées.'
@@ -112,6 +110,7 @@ class CatalogController extends AbstractController {
             'article' => $article,
             'commentForm' => $form->createView()
         ]);
+
     }
 
     /**

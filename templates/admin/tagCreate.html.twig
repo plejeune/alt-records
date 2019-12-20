@@ -1,0 +1,9 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block body %}
+
+    {{ form_start(tagForm) }}
+    {{ form_widget(tagForm.name )}}
+    {{ form_end(tagForm) }}
+
+{% endblock %}

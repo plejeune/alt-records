@@ -46,7 +46,7 @@
             {{ form_row(formArticle.content, {'attr': {'placeholder': "Commentaire additionnel"}}) }}
             {{ form_row(formArticle.image, {'attr': {'placeholder': "URL de l'image"}}) }}
             {{ form_row(formArticle.video, {'attr': {'placeholder': "ID de la vidéo"}}) }}
-            <i class="grey">(Ex : www.youtube.com/watch?v=m0IKAQVVksQ <big>&#8594;</big> <b class="text-success">m0IKAQVVksQ</b>)</i><br><br>
+            <i class="grey">(Ex : www.youtube.com/watch?v=<u>m0IKAQVVksQ</u> <big>&#8594;</big> <b class="text-success">m0IKAQVVksQ</b>)</i><br><br>
             {{ form_widget(formArticle.author, {value : app.user.username, 'type': 'hidden'}) }}
         </div>
 

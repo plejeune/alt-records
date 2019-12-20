@@ -24,7 +24,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for user in users %}
+                        {% for user in users  %}
+                            {% if user.role == "ROLE_USER" %}
                             <tr class="table-active">
                                 <td>{{ user.id }}</td>
                                 <td>{{ user.username }}</td>
@@ -33,6 +34,9 @@
                                 <td>{{ user.role }}</td>
                                 <td>&nbsp;</td>
                             </tr>
+                            {% else %}
+                            <tr></tr>
+                            {% endif %}
                         {% endfor %}
                     </tbody>
                 </table> 

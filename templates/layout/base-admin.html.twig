@@ -20,9 +20,7 @@
 
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
-
                     {% if app.user and app.user.role == "ROLE_ADMIN" %}
-
                         <li class="nav-item">
                             <a href="{{ path('home') }}" class="nav-link">&#8617; Retour au site</a>
                         </li>
@@ -32,14 +30,16 @@
                         <li class="nav-item">
                             <a href="{{ path('security_logout') }}" class="nav-link">&#9826; Déconnexion</a>
                         </li>
-                        <a href="https://github.com/plejeune/alt-records" target="_blank">
-                            <button class="btn btn-outline-light my-2 my-sm-0 align-right absolute" type="submit">&#10140; Github</button>
-                        </a>
-
+                        <div class="align-right absolute">
+                            <a href="https://github.com/plejeune/alt-records" target="_blank">
+                                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">&#10140; Github</button>
+                            </a> &nbsp; 
+                            <a href="https://bitbucket.org/palejeune/alt-records" target="_blank">
+                                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">&#10140; Bitbucket</button>
+                            </a>
+                        </div>
                     {% else %}
-
                         <li></li>
-
                     {% endif %}
                     
                 </ul>
@@ -49,7 +49,7 @@
         <div class="container">
             {% block body %}{% endblock %}
         </div>
-        {% block javascripts %}{% endblock %}
+
     </body>
     
 </html>

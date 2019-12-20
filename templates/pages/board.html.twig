@@ -33,12 +33,16 @@
                             <td><b>**********</b></td>
                         </tr>
                         <tr>
-                            <td class="lightgrey">Identifiant</td>
-                            <td><b>PWD-{{ app.user.id }}</b></td>
+                            <td class="lightgrey">Rôle/statut</td>
+                            {% if app.user.role == "ROLE_ADMIN" %}
+                                <td><b class="badge badge-warning">admin</b></td>
+                            {% else %}
+                                <td><b class="badge badge-primary">user</b></td>
+                            {% endif %}
                         </tr>
                         <tr>
-                            <td class="lightgrey">Rôle/statut</td>
-                            <td><b>{{ app.user.role }}</b></td>
+                            <td class="lightgrey">Identifiant</td>
+                            <td><b>PWD-{{ app.user.id }}</b></td>
                         </tr>
                         <tr>
                             <td class="lightgrey">Date d'inscription</td>

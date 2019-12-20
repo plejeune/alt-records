@@ -5,11 +5,11 @@
     <section class="search mt-10">
         <div class="mb-20">
             <b>Rechercher par :</b> &nbsp;
-            <div class="btn btn-success btn-sm">Artiste</div>&nbsp;
+            <a href="{{ path('search') }}" class="btn btn-light btn-sm">Artiste</a>&nbsp;
             <a href="{{ path('search_by_title') }}" class="btn btn-light btn-sm">Titre</a>&nbsp;
-            <a href="{{ path('search_by_year') }}" class="btn btn-light btn-sm">Année</a>
+            <div class="btn btn-success btn-sm">Année</div>
         </div>
-        <h1>Effectuer une recherche par artiste</h1>
+        <h1>Effectuer une recherche par année</h1>
         {{ form(form) }}
     </section>
 
