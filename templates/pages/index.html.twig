@@ -4,22 +4,25 @@
 
 {% block body %}
 
-    <section class="articles">
+    <section class="articles mt-10">
+        <div class="absolute ml-10 mg-m10">
+            {{ knp_pagination_render(articles) }}
+        </div>
 
         <div class="tri text-right">
-            <b class="mr-50"><a href="{{ path('catalogue') }}">Trier par catégorie</a></b>
+            <b class="mr-50"><a href="{{ path('catalogue') }}">Filtrer par catégorie</a></b>
         </div><br>
 
         {% for article in articles %}
             <article class="catalog_list draggable">
                 <div class="content">
                     {% if app.user %}
-                        <a href="{{ path('blog_show', {'slug': article.slug}) }}" title="{{ article.artist }} - {{ article.title }}"><img src="{{ article.image }}" alt="">
+                        <a href="{{ path('blog_show', {'slug': article.slug}) }}"><img src="{{ article.image }}">
                         <div class="overlay">
                             <div class="text">{{ article.artist }} - {{ article.title }}</div>
                         </div></a>
                     {% else %}
-                        <a href="{{ path('security_login') }}"><img src="{{ article.image }}" alt=""></a>
+                        <a href="{{ path('security_login') }}"><img src="{{ article.image }}"></a>
                     {% endif %}
                 </div>
             </article>
@@ -27,9 +30,9 @@
 
     </section>
 
-    <footer class="page-footer font-small">
-        <div class="footer-copyright text-center py-3">
-            <p>© 2019-20 ALT Records</p>
+    <footer class="page-footer font-small"><br>
+        <div class="footer-copyright">
+        <!-- <p class="ml-10">ALT Records 2019-20 / Besweb2 PWD (Pierre Lejeune)</p> -->
         </div>
     </footer>
 

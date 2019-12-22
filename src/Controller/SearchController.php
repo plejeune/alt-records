@@ -17,8 +17,8 @@ class SearchController extends AbstractController
      * @Route("/search", name="search")
      */
     public function searchBar(ArticleRepository $articleRepository) {
+
         $formBuilder = $this->createFormBuilder(null);
-        
         $formBuilder->setAction($this->generateUrl('search_result'))
             ->add('query', TextType::class, [
                 'attr' => ['placeholder' => 'Entrez le nom d\'un artiste... (Ex : Nirvana)']
@@ -58,8 +58,8 @@ class SearchController extends AbstractController
      * @Route("/searchbytitle", name="search_by_title")
      */
     public function searchBarByTitle(ArticleRepository $articleRepository) {
+
         $formBuilder = $this->createFormBuilder(null);
-        
         $formBuilder->setAction($this->generateUrl('search_result_by_title'))
             ->add('query', TextType::class, [
                 'attr' => [
@@ -103,8 +103,8 @@ class SearchController extends AbstractController
      * @Route("/searchbyyear", name="search_by_year")
      */
     public function searchBarByYear(ArticleRepository $articleRepository) {
+
         $formBuilder = $this->createFormBuilder(null);
-        
         $formBuilder->setAction($this->generateUrl('search_result_by_year'))
             ->add('query', TextType::class, [
                 'attr' => [

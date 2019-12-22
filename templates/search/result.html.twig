@@ -19,9 +19,15 @@
                 <article class="catalog_list">
                     <div class="content">
                         {% if app.user %}
-                            <a href="{{ path('blog_show', {'slug': article.slug}) }}"><img src="{{ article.image }}" alt=""></a>
+                            <a href="{{ path('blog_show', {'slug': article.slug}) }}"><img src="{{ article.image }}" alt="">
+                            <div class="overlay">
+                                <div class="text">{{ article.artist }} - {{ article.title }}</div>
+                            </div></a>
                         {% else %}
-                            <a href="{{ path('security_login') }}"><img src="{{ article.image }}" alt=""></a>
+                            <a href="{{ path('security_login') }}"><img src="{{ article.image }}" alt="">
+                            <div class="overlay">
+                                <div class="text">{{ article.artist }} - {{ article.title }}</div>
+                            </div></a>
                         {% endif %}
                     </div>
                 </article>

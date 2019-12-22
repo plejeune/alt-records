@@ -95,14 +95,10 @@ class Article
     private $category;
 
     /**
+     * 
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="article", orphanRemoval=true)
      */
     private $comments;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", mappedBy="articles")
-     */
-    private $tags;
 
     public function __construct()
     {
@@ -295,37 +291,6 @@ class Article
             // set the owning side to null (unless already changed)
             if ($comment->getArticle() === $this) {
                 $comment->setArticle(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Tag[]
-     */
-    public function getTags(): Collection
-    {
-        return $this->tags;
-    }
-
-    public function addTag(Tag $tag): self
-    {
-        if (!$this->tags->contains($tag)) {
-            $this->tags[] = $tag;
-            $tag->setArticle($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTag(Tag $tag): self
-    {
-        if ($this->tags->contains($tag)) {
-            $this->tags->removeElement($tag);
-            // set the owning side to null (unless already changed)
-            if ($tag->getArticle() === $this) {
-                $tag->setArticle(null);
             }
         }
 

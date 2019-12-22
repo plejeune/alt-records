@@ -8,24 +8,41 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\Common\Persistence\ObjectManager;
+use Knp\Component\Pager\PaginatorInterface;
 use App\Form\CommentType;
-use App\Form\TagType;
 use App\Form\ArticleType;
 use App\Entity\Article;
 use App\Entity\Category;
 use App\Entity\Comment;
-use App\Entity\Tag;
 use App\Repository\ArticleRepository;
 use App\Repository\UserRepository;
 
 class CatalogController extends AbstractController {
 
     /**
-     * @Route("/catalogue", name="catalogue_list")
+     * @Route("/catalogue", name="catalogue")
      */
-    public function index(ArticleRepository $repo) {
+    public function catalogue(ArticleRepository $repo) {
 
         $articles = $repo->findAll();
+
+        return $this->render('pages/catalogue.html.twig', [
+            'controller_name' => 'CatalogController',
+            'articles' => $articles
+        ]);
+
+    }
+
+    /**
+     * @Route("/catalogue/list", name="catalogue_list")
+     */
+    public function index(ArticleRepository $repo, Request $request, PaginatorInterface $paginator) {
+
+        $articles = $paginator->paginate(
+            $repo->findAllWithPagination(),
+            $request->query->getInt('page', 1),
+            8
+        );
         
         return $this->render('pages/index.html.twig', [
             'controller_name' => 'CatalogController',
@@ -44,13 +61,13 @@ class CatalogController extends AbstractController {
         }
 
         $form = $this->createForm(ArticleType::class, $article);
-
         $form->handleRequest($request); 
 
         if($form->isSubmitted() && $form->isValid()) {
 
             if(!$article->getId()) {
                 $article->setCreatedAt(new \DateTime());
+                $article->setModifiedAt(new \DateTime());
 
                 $this->addFlash(
                     'post',
@@ -78,18 +95,19 @@ class CatalogController extends AbstractController {
             'editMode' => $article->getId() !== null
         ]);
     }
-    
+
     /**
      * @Route("/catalogue/item/{slug}", name="blog_show")
      */
     public function show(Article $article, Request $request, ObjectManager $manager) {
         
         $comment = new Comment();
-        $form = $this->createForm(CommentType::class, $comment);
 
+        $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+
             $comment->setCreatedAt(new \DateTime())
                     ->setArticle($article);
             
@@ -128,20 +146,5 @@ class CatalogController extends AbstractController {
 
         return $this->redirectToRoute('catalogue');
     }
-
-    /**
-     * @Route("catalogue/list", name="catalogue")
-     */
-    public function catalogueList(ArticleRepository $repo) {
-
-        $articles = $repo->findAll();
-
-        return $this->render('pages/catalogue.html.twig', [
-            'controller_name' => 'CatalogController',
-            'articles' => $articles
-        ]);
-
-    }
-
     
 }

@@ -6,13 +6,12 @@
         Le compte a été supprimé. <a href="{{ path('home') }}" class="close_x">&#10005;</a>
     </div>
 
+    {# redirection gérée dans le script redirect.js #}
     {% block javascripts %}
-        <script>
-            function redir(){
-                self.location.href="{{ path('home') }}"
-            }
-            setTimeout(redir,3000)
-        </script>
+        <script src="{{ asset('assets/js/redirect.js') }}"></script>
     {% endblock %}
+
+    {# redirection après 3 secondes #}
+    <script>setTimeout(redir,3000);</script>
 
 {% endblock %}

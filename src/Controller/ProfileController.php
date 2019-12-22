@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
-
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Repository\UserRepository;
 use App\Entity\User;
@@ -20,7 +19,7 @@ class ProfileController extends AbstractController
 
         $users = $repo->findAll();
 
-        return $this->render('pages/board.html.twig', [
+        return $this->render('pages/account.html.twig', [
             'users' => $users
         ]);
     }
