@@ -1,0 +1,59 @@
+{% extends 'layout/base-admin.html.twig' %}
+
+{% block body %} 
+
+        {% if not app.user %}
+
+            <p>Vous n'avez pas accès à cette page</p>
+            <a href="{{ path('home') }}" class="btn btn-light">Retour</a>
+
+        {% elseif app.user and app.user.role == "ROLE_ADMIN" %}
+
+            <div class="mt-5 list">
+                <h1>Commentaires signalés</h1>
+                <hr>      
+                <table class="table table-hover users">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Auteur</th>
+                            <th style="width:400px;">Contenu</th>
+                            <th>Article</th>
+                            <th>Posté le</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for comment in comments  %}
+                            {% if comment.reported == "true" %}
+                                <tr class="table-active">
+                                    <td>{{ comment.id }}</td>
+                                    <td>{{ comment.author }}</td>
+                                    <td>{{ comment.content }}</td>
+                                    <td>{{ comment.article.id }}</td>
+                                    <td>{{ comment.createdAt | date ('d/m/Y à H:i') }}</td>
+                                    <td>
+                                        <a href="{{ path('blog_show', {'slug': comment.article.slug}) }}" class="btn btn-primary btn-sm" title="VOIR"><big>&#x1F441;</big></a>&nbsp;
+                                        <div class="btn btn-danger btn-sm btn-delete" title="SUPPRIMER"><big>&nbsp;&#x1F5D1;</big></div>&nbsp;
+                                        <a class="btn btn-light btn-sm btn-hide" title="ANNULER">&#10006;</a>&nbsp;
+                                        <a href="{{ path('comment_delete', { 'id': comment.id }) }}" class="btn btn-dark btn-sm btn-confirm" title="CONFIRMER">&#10004;</a>
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table> 
+            </div>
+
+        {% else %}
+
+            <p>Vous n'avez pas accès à cette page</p>
+            <a href="{{ path('home') }}" class="btn btn-light">&#8617; Retour</a>
+                
+        {% endif %}
+
+        {# ----- Boutons Delete gérés dans le script action.js ----- #}
+        
+        <script src="{{ asset('assets/js/action.js') }}"></script>
+
+{% endblock %}

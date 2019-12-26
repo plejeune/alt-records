@@ -23,5 +23,18 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    # App\EventListener\KernelException:
+    #     tags:
+    #         - { name: kernel.event_listener, event: kernel.exception }
+
+    # App\EventSubscriber\KernelSubscriber:
+    #     tags:
+    #         - { name: kernel.event_subscriber }
+
+    # App\EventListener\TodoListener:
+    #     tags:
+    #         - { name: doctrine.event_listener, event: postPersist }
+
+    App\EventListener\LoginListener:
+        tags:
+            - { name: 'kernel.event_listener', event: 'security.interactive_login' }

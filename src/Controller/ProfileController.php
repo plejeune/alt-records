@@ -9,19 +9,34 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Repository\UserRepository;
 use App\Entity\User;
+use App\Repository\CommentRepository;
+use App\Entity\Comment;
 
 class ProfileController extends AbstractController
 {
     /**
      * @Route("/profile", name="my_account")
      */
-    public function myaccount(UserRepository $repo) {
+    public function myAccount(UserRepository $repo) {
 
         $users = $repo->findAll();
 
         return $this->render('pages/account.html.twig', [
             'users' => $users
         ]);
+    }
+
+    /**
+     * @Route("/profile/mycomments", name="my_comments")
+     */
+    public function myComments(CommentRepository $repo) {
+
+        $comments = $repo->findAll();
+
+        return $this->render('pages/mycomments.html.twig', [
+            'comments' => $comments
+        ]);
+
     }
 
     /**

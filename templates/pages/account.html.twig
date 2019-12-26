@@ -67,13 +67,13 @@
                         </div>
                         <div class="sub-options"><br>
                             <div class="edit_btn">
-                                <a href="{{ path('security_account', {'username': app.user.username, 'id': app.user.id}) }}" class="btn btn-light btn-sm">Modifier les infos</a>
+                                <a href="{{ path('security_account', {'username': app.user.username, 'id': app.user.id}) }}" class="btn btn-light btn-sm">Modifier mes infos</a>
                             </div>
                             <div class="edit_mdp_btn">
-                                <a href="#" class="btn btn-light btn-sm">Modifier mot de passe</a>
+                                <a href="{{ path('my_comments') }}" class="btn btn-light btn-sm">Voir mes commentaires</a>
                             </div>
                             <div class="edit_mdp_btn">
-                                <a href="#" class="btn btn-light btn-sm">MP3 offert</a>
+                                <a href="#" class="btn btn-light btn-sm">Mon MP3 offert</a>
                             </div><br>
                             <div class="logout_btn">
                                 <a href="{{ path('security_logout') }}" class="btn btn-outline-warning btn-sm">Se déconnecter</a>

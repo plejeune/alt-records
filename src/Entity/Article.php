@@ -89,6 +89,11 @@ class Article
     private $modifiedAt;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    private $reported;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="articles")
      * @ORM\JoinColumn(nullable=true)
      */
@@ -99,6 +104,7 @@ class Article
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="article", orphanRemoval=true)
      */
     private $comments;
+
 
     public function __construct()
     {
@@ -254,6 +260,18 @@ class Article
         return $this;
     }
 
+    public function getReported(): ?string
+    {
+        return $this->reported;
+    }
+
+    public function setReported(string $reported): self
+    {
+        $this->reported = $reported;
+
+        return $this;
+    }
+
     public function getCategory(): ?Category
     {
         return $this->category;
@@ -292,6 +310,33 @@ class Article
             if ($comment->getArticle() === $this) {
                 $comment->setArticle(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tag[]
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    public function addTag(Tag $tag): self
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+            $tag->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTag(Tag $tag): self
+    {
+        if ($this->tags->contains($tag)) {
+            $this->tags->removeElement($tag);
         }
 
         return $this;

@@ -13,7 +13,7 @@ class TagType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name')
-                ->add('ajouter un tag', SubmitType::class)
+                ->add('submit', SubmitType::class)
         ;
     }
 
@@ -23,6 +23,5 @@ class TagType extends AbstractType
             "data_class" =>  Tag::class
         ]);
     }
-
 
 }

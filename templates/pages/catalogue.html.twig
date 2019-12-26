@@ -10,6 +10,12 @@
         </div>
     {% endfor %}
 
+    {% for message in app.flashes('reported') %}
+        <div class="alert alert-light">
+            {{ message }} <a href="{{ path('catalogue') }}"><span class="close_x">&#10005;</span></a>
+        </div>
+    {% endfor %}
+
     {% if app.user %}
 
         <div class="ml-20 mg-5 absolute">
@@ -18,11 +24,11 @@
 
         <div class="tri text-right mr-50">
             <b>Filtrer par catégorie : &nbsp;</b>
-            <div class="btn btn-success btn-sm btn-all capitalize">Tout</div> &nbsp; <b>/</b> &nbsp;
-            <div class="btn btn-light btn-sm btn-rock">Rock</div>
-            <div class="btn btn-light btn-sm btn-pop">Pop</div>
-            <div class="btn btn-light btn-sm btn-metal">Metal</div>
-            <div class="btn btn-light btn-sm btn-grunge">Grunge</div>
+            <a href="#" class="btn btn-success btn-sm btn-all capitalize">Tout</a> &nbsp; <b>/</b> &nbsp;
+            <a href="#?cat=rock" class="btn btn-light btn-sm btn-rock">Rock</a>
+            <a href="#?cat=pop" class="btn btn-light btn-sm btn-pop">Pop</a>
+            <a href="#?cat=metal" class="btn btn-light btn-sm btn-metal">Metal</a>
+            <a href="#?cat=grunge" class="btn btn-light btn-sm btn-grunge">Grunge</a>
         </div><br>
         
         {% for article in articles %}

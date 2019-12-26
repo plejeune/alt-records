@@ -20,12 +20,6 @@
         </div>
     {% endfor %}
 
-    {% for message in app.flashes('tag') %}
-        <div class="alert alert-light">
-            {{ message }} <a href="{{ path('blog_show', { 'slug': article.slug}) }}"><span class="close_x">&#10005;</span></a>
-        </div>
-    {% endfor %}
-
     <section id="articles">
 
         <article class="item">
@@ -80,13 +74,15 @@
 
                 {% if app.user.role == "ROLE_ADMIN" %}
                     <div class="item-buttons ml-50 mg-30">
-                        <a href="{{ path('catalogue') }}" class="btn btn-light">&#8617; Retour au catalogue</a> &nbsp; 
-                        <a href="{{ path('blog_edit', { 'id': article.id }) }}" class="btn btn-primary">Modifier</a> &nbsp; 
-                        <div class="btn btn-danger del_btn">Supprimer</div>
+                        <a href="{{ path('catalogue') }}" class="btn btn-light btn-sm">&#8617; &nbsp;Retour au catalogue</a> &nbsp; 
+                        <a href="{{ path('report_item', { 'id': article.id }) }}" class="btn btn-warning btn-sm">&#9888; &nbsp;Signaler</a><br><br>
+                        <a href="{{ path('blog_edit', { 'id': article.id }) }}" class="btn btn-primary btn-sm">&#9998; &nbsp;Modifier</a> &nbsp; 
+                        <div class="btn btn-danger btn-sm del_btn">&#10006; &nbsp;Supprimer</div>
                     </div>
                 {% else %}
 
-                    <a href="{{ path('catalogue') }}" class="btn btn-light ml-50 mg-20">Retour au catalogue</a>
+                    <a href="{{ path('catalogue') }}" class="btn btn-light ml-50 mg-20">&#8617; &nbsp;Retour au catalogue</a> &nbsp;
+                    <a href="{{ path('report_item', { 'id': article.id }) }}" class="btn btn-warning btn-sm">&#9888; &nbsp;Signaler</a><br>
 
                 {% endif %}
 
@@ -109,29 +105,31 @@
 
     <section id="commentaires">
         <hr class="ml-20 mr-20">
-        <h1 class="ml-20 mb-20">{{ article.comments | length }} commentaire(s) : </h1>
+        <h1 class="ml-20 mb-20">{{ article.comments | length }} commentaire(s) : </h1> 
         
         {% for comment in article.comments %}
-            <div class="comment ml-20 mr-20">
+            <div class="comment ml-20 mr-20 mb-10" style="background:rgba(0,0,0,.1);padding:10px;">
                 <div class="row">
                     <div class="col-3">
-                        {{ comment.author }} (<small>Posté le {{ comment.createdAt | date ('d/m/Y à H:i') }}</small>)
+                        <b>{{ comment.author }}</b><br>
+                        (<small>Posté le {{ comment.createdAt | date ('d/m/Y à H:i') }}</small>)
                     </div>
-                    <div class="col">
+                    <div class="" style="width:700px;">
                         {{ comment.content | raw }}
+                    </div>
+                    <div class="col mg-10">
+                        <a href="{{ path('report_com', { 'id': comment.id }) }}" class="btn btn-warning btn-sm" title="SIGNALER">&#9888;</a>
                     </div>
                 </div>
             </div>
         {% endfor %}
 
-        <hr>
-
         {% if app.user %}
 
             {% set user_now = app.user.username %}
-
-            <div class="ml-20">
-
+            <hr class="ml-20 mr-20">
+            <h1 class="ml-20 mb-20">Poster un commentaire</h1>
+            <div class="ml-20 mr-20">
                 <b><a href="{{ path('security_logout') }}">Vous êtes connecté en tant que <span class="capitalize">{{ user_now }}</span>. Ce n'est pas vous ?</a></b>
 
                 {{ form_start(commentForm) }}

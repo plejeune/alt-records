@@ -2,7 +2,7 @@
 
 {% block body %}
 
-    <section class="admin mt-10">
+    <section class="mt-10">
 
         {% if not app.user %}
 
@@ -11,29 +11,60 @@
 
         {% elseif app.user and app.user.role == "ROLE_ADMIN" %}
 
-            <div class="board">
+            <div class="board relative">
 
-                <h1>Tableau de bord - Admin</h1>
-                <hr><br>
-                <h3>Gestion catalogue</h3>
-                <a href="{{ path('catalogue') }}" class="btn btn-light mb-30">Liste des éléments</a> &nbsp; <a href="{{ path('blog_create') }}" class="btn btn-light mb-30">Insérer un élément</a>
-                
-                <h3>Gestion commentaires</h3>
-                <a href="{{ path('catalogue') }}" class="btn btn-light mb-30">Commentaires signalés</a>
-                
-                <h3>Gestion users</h3>
-                <a href="{{ path('list_users') }}" class="btn btn-light mb-30">Liste des utilisateurs inscrits</a>
+                <h1>TABLEAU DE BORD &nbsp; &nbsp; <small class="grey align-right absolute mg-20 date">Bonjour, <b class="text-primary">{{ app.user.username }}</b>. &nbsp; | &nbsp; Nous sommes le <span id="date"></span></small></h1>
+                <hr class="mb-50">
+                <div class="w-25 box text-center">
+                    <h4 class="uppercase grey">Catalogue & items</h4>
+                    <hr class="ml-10 mr-10">
+                    <a href="{{ path('list_items') }}" class="btn btn-dark btn-sm mb-10"><big>&#x1F441; &nbsp;</big>Tous les éléments</a><br>
+                    <hr class="ml-10 mr-10">
+                    <a href="{{ path('blog_create') }}" class="btn btn-success btn-sm mb-10"><big>&#10010; &nbsp;</big>Insérer un élément</a><br>
+                    <a href="{{ path('reported_items') }}" class="btn btn-warning btn-sm mb-10"><big>&#9888; &nbsp;</big>Eléments signalés</a>
+                </div>
+                <div class="w-25 box text-center">
+                    <h4 class="uppercase grey">Commentaires</h4>
+                    <hr class="ml-10 mr-10">
+                    <a href="{{ path('list_comments') }}" class="btn btn-dark btn-sm mb-10"><big>&#x1F441; &nbsp;</big>Tous les commentaires</a><br>
+                    <hr class="ml-10 mr-10">
+                    <a href="{{ path('reported_comments') }}" class="btn btn-warning btn-sm mb-10"><big>&#9888; &nbsp;</big>Commentaires signalés</a>
+                    <br><br><br>
+                </div>
+                <div class="w-25 box text-center">
+                    <h4 class="uppercase grey">Utilisateurs</h4>
+                    <hr class="ml-10 mr-10">
+                    <a href="{{ path('list_users') }}" class="btn btn-dark btn-sm mb-10"><big>&#x1F441; &nbsp;</big>Tous les utilisateurs</a><br>
+                    <hr class="ml-10 mr-10">
+                    <a href="{{ path('online_users') }}" class="btn btn-primary btn-sm mb-10"><big>&#9728; &nbsp;</big>Utilisateurs en ligne<big></a><br>
+                    <a href="{{ path('list_admins') }}" class="btn btn-info btn-sm mb-10"><big>&#9812; &nbsp;</big>Liste des admins</a>
+                </div>
+                <div class="w-20 box git text-center">
+                    <h4 class="uppercase grey">Git</h4>
+                    <hr class="ml-10 mr-10 mb-20">
+                    <a href="https://github.com/plejeune/alt-records" target="_blank" class="btn btn-light btn-sm mb-20"><big>&#10047; &nbsp;</big>Dépôt Github</a><br>
+                    <a href="https://bitbucket.org/palejeune/alt-records" target="_blank" class="btn btn-light btn-sm"><big>&#10047; &nbsp;</big>Dépôt Bitbucket</a>
+                </div>
 
             </div>
+
+            <hr class="mt-30">
 
         {% else %}
 
             <p>Vous n'avez pas accès à cette page</p>
-            <a href="{{ path('home') }}" class="btn btn-light">&#8617; Retour</a>
+            <a href="{{ path('home') }}" class="btn btn-light btn-sm">&#8617; Retour</a>
 
         {% endif %}
 
     </section>
+
+    {# Date gérée dans le script clock.js #}
+
+    {% block javascripts %}
+        <script src="{{ asset('assets/js/clock.js') }}"></script>
+        <script>setTimeout(date,100);</script>
+    {% endblock %}
 
 
 {% endblock %}

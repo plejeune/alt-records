@@ -2,4 +2,20 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
+cat_rock:
+  path: /catalogue/rock
+  controller: App\Controller\CatalogController::catalogue
+
+cat_pop:
+  path: /catalogue/pop
+  controller: App\Controller\CatalogController::catalogue
+
+cat_metal:
+  path: /catalogue/metal
+  controller: App\Controller\CatalogController::catalogue
+
+cat_grunge:
+  path: /catalogue/grunge
+  controller: App\Controller\CatalogController::catalogue
+
 

@@ -1,0 +1,62 @@
+{% extends 'layout/base-admin.html.twig' %}
+
+{% block body %} 
+
+        {% if not app.user %}
+
+            <p>Vous n'avez pas accès à cette page</p>
+            <a href="{{ path('home') }}" class="btn btn-light">Retour</a>
+
+        {% elseif app.user and app.user.role == "ROLE_ADMIN" %}
+
+            <div class="mt-5 list">
+                <h1>Tous les éléments</h1>
+                <hr>      
+                <table class="table table-hover users">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Img</th>
+                            <th>Artiste</th>
+                            <th>Titre</th>
+                            <th>Album</th>
+                            <th>Ajouté le</th>
+                            <th>Modifié le</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for article in articles  %}
+                                <tr class="table-active itemlist">
+                                    <td>{{ article.id }}</td>
+                                    <td><img src="{{ article.image }}"></td>
+                                    <td>{{ article.artist }}</td>
+                                    <td>{{ article.title }}</td>
+                                    <td>{{ article.album }}</td>
+                                    <td>{{ article.createdAt | date ('d/m/Y à H:i') }}</td>
+                                    <td>{{ article.modifiedAt | date ('d/m/Y à H:i') }}</td>
+                                    <td>
+                                        <a href="{{ path('blog_show', {'slug': article.slug}) }}" class="btn btn-success btn-sm" title="VOIR"><big>&#x1F441;</big></a>&nbsp;
+                                        <a href="{{ path('blog_edit', { 'id': article.id }) }}" class="btn btn-primary btn-sm" title="MODIFIER"><big>&#9998;</big></a>&nbsp;
+                                        <div class="btn btn-danger btn-sm btn-delete" title="SUPPRIMER"><big>&nbsp;&#x1F5D1;</big></div>&nbsp;
+                                        <a class="btn btn-light btn-sm btn-hide" title="ANNULER">&#10006;</a>&nbsp;
+                                        <a href="{{ path('item_delete', { 'id': article.id }) }}" class="btn btn-dark btn-sm btn-confirm" title="CONFIRMER">&#10004;</a>
+                                    </td>
+                                </tr>
+                        {% endfor %}
+                    </tbody>
+                </table> 
+            </div>
+
+        {% else %}
+
+            <p>Vous n'avez pas accès à cette page</p>
+            <a href="{{ path('home') }}" class="btn btn-light">&#8617; Retour</a>
+                
+        {% endif %}
+
+        {# ----- Boutons Delete gérés dans le script action.js ----- #}
+        
+        <script src="{{ asset('assets/js/action.js') }}"></script>
+
+{% endblock %}

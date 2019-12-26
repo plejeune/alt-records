@@ -7,8 +7,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Persistence\ObjectManager;
+
 use Knp\Component\Pager\PaginatorInterface;
+
 use App\Form\CommentType;
 use App\Form\ArticleType;
 use App\Entity\Article;
@@ -17,6 +22,11 @@ use App\Entity\Comment;
 use App\Repository\ArticleRepository;
 use App\Repository\UserRepository;
 
+
+/**
+ * @ORM\Entity(repositoryClass="App\Entity\ArticleRepository")
+ * @ORM\HasLifecycleCallbacks()
+ */
 class CatalogController extends AbstractController {
 
     /**
@@ -109,7 +119,8 @@ class CatalogController extends AbstractController {
         if($form->isSubmitted() && $form->isValid()) {
 
             $comment->setCreatedAt(new \DateTime())
-                    ->setArticle($article);
+                    ->setArticle($article)
+                    ->setReported("false");
             
             $manager->persist($comment);
             $manager->flush();
@@ -145,6 +156,60 @@ class CatalogController extends AbstractController {
         );
 
         return $this->redirectToRoute('catalogue');
+    }
+
+    /**
+     * @Route("/catalogue/comment/delete/{id}", name="comment_delete")
+     */
+    public function deleteCom(Comment $comment, ObjectManager $manager) {
+        
+        $manager->remove($comment);
+        $manager->flush();
+
+        $this->addFlash(
+            'item_deleted',
+            'L\'élément a été supprimé.'
+        );
+
+        return $this->redirectToRoute('security_admin');
+    }
+
+    /**
+     * @Route("/catalogue/item/report/{id}", name="report_item")
+     */
+    public function reportItem(Article $article, ObjectManager $manager) {
+
+        $article->setReported("true");
+
+        $manager->persist($article);
+        $manager->flush();
+
+        $this->addFlash(
+            'reported',
+            'L\'élément a été signalé. Nous vous en remercions.'
+        );
+
+        return $this->redirectToRoute('catalogue');
+
+    }
+
+    /**
+     * @Route("/catalogue/comment/report/{id}", name="report_com")
+     */
+    public function reportCom(Comment $comment, ObjectManager $manager) {
+
+        $comment->setReported("true");
+
+        $manager->persist($comment);
+        $manager->flush();
+
+        $this->addFlash(
+            'reported',
+            'L\'élément a été signalé. Nous vous en remercions.'
+        );
+
+        return $this->redirectToRoute('catalogue');
+
     }
     
 }

@@ -31,6 +31,16 @@ $( ".cancel" ).on( "click", function() {
     $(".delete-window").hide();
 });
 
+$( ".btn-delete" ).on( "click", function() {
+    $(".btn-confirm").show();
+    $(".btn-hide").show();
+});
+
+$( ".btn-hide" ).on( "click", function() {
+    $(".btn-confirm").hide();
+    $(".btn-hide").hide();
+});
+
 
 $( ".btn-all" ).on( "click", function() {
     $(".Rock").show();
