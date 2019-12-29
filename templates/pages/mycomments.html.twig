@@ -9,12 +9,11 @@
 
         {% elseif app.user %}
 
-            <div class="mt-10 userlist">
+            <div class="mt-10 list2">
                 <h1>Mes commentaires</h1><br>     
                 <table class="table table-hover users">
                     <thead>
                         <tr>
-                            <th>Identifiant</th>
                             <th>Auteur</th>
                             <th>Contenu</th>
                             <th>Date</th>
@@ -26,14 +25,15 @@
                         {% for comment in comments | sort %}
                             {% if comment.author == app.user.username %}
                                 <tr class="table-active">
-                                    <td>{{ comment.id }}</td>
                                     <td>{{ comment.author }}</td>
                                     <td>{{ comment.content }}</td>
                                     <td>{{ comment.createdAt | date ('d/m/Y à H:i') }}</td>
                                     <td>{{ comment.article.id }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-primary btn-sm" title="VOIR"><big>&#x1F441;</big></a> &nbsp; 
-                                        <a href="#" class="btn btn-danger btn-sm" title="SUPPRIMER"><big>&nbsp;&#x1F5D1;</big></a>
+                                        <a href="{{ path('blog_show', {'slug': comment.article.slug}) }}" class="btn btn-primary btn-sm" title="VOIR"><big>&#x1F441;</big></a>&nbsp;
+                                        <div class="btn btn-danger btn-sm btn-delete" title="SUPPRIMER"><big>&nbsp;&#x1F5D1;</big></div>&nbsp;
+                                        <a class="btn btn-light btn-sm btn-hide" title="ANNULER">&#10006;</a>&nbsp;
+                                        <a href="{{ path('comment_delete', { 'id': comment.id }) }}" class="btn btn-dark btn-sm btn-confirm" title="CONFIRMER">&#10004;</a>
                                     </td>
                                 </tr>
                             {% else %}
@@ -52,5 +52,9 @@
             <a href="{{ path('home') }}" class="btn btn-light">&#8617; Retour</a>
                 
         {% endif %}
+
+        {# ----- Boutons Delete gérés dans le script action.js ----- #}
+        
+        <script src="{{ asset('assets/js/action.js') }}"></script>
 
 {% endblock %}

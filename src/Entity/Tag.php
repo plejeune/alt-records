@@ -25,10 +25,11 @@ class Tag
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Article", inversedBy="tags")
-     * 
+     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(name="article", type="string", length=255)
+     * @ORM\ManyToMany(targetEntity="App\Entity\Article", mappedBy="tags")
      */
-    private $articles;
+    private $article;
 
     public function getId(): ?int
     {
@@ -47,7 +48,12 @@ class Tag
         return $this;
     }
 
-    public function getArticle(): ?Article
+    public function getArticle()
+    {
+        return $this->article;
+    }
+
+    public function addArticle()
     {
         return $this->article;
     }

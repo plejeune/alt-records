@@ -19,6 +19,8 @@ use App\Form\ArticleType;
 use App\Entity\Article;
 use App\Entity\Category;
 use App\Entity\Comment;
+use App\Entity\Tag;
+use App\Repository\TagRepository;
 use App\Repository\ArticleRepository;
 use App\Repository\UserRepository;
 
@@ -109,9 +111,10 @@ class CatalogController extends AbstractController {
     /**
      * @Route("/catalogue/item/{slug}", name="blog_show")
      */
-    public function show(Article $article, Request $request, ObjectManager $manager) {
+    public function show(Article $article, TagRepository $Trepo, Request $request, ObjectManager $manager) {
         
         $comment = new Comment();
+        $tags = $Trepo->findAll();
 
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
@@ -137,6 +140,7 @@ class CatalogController extends AbstractController {
 
         return $this->render('pages/show.html.twig', [
             'article' => $article,
+            'tags' => $tags,
             'commentForm' => $form->createView()
         ]);
 
@@ -167,11 +171,18 @@ class CatalogController extends AbstractController {
         $manager->flush();
 
         $this->addFlash(
-            'item_deleted',
-            'L\'élément a été supprimé.'
+            'com_deleted',
+            'Le commentaire a été supprimé.'
         );
 
-        return $this->redirectToRoute('security_admin');
+        $user = $this->getUser();
+        $role = $user->getRole();
+
+        if($role == "ROLE_ADMIN") { 
+            return $this->redirectToRoute('security_admin');
+        } else {
+            return $this->redirectToRoute('my_account');
+        }
     }
 
     /**

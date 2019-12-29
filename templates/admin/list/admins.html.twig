@@ -11,7 +11,7 @@
 
             <div class="mt-10 list">
                 <h1>Liste des admins</h1>
-                <hr>      
+                <br>      
                 <table class="table table-hover users">
                     <thead>
                         <tr>
@@ -35,10 +35,14 @@
                                 <td>{{ user.createdAt | date ('d/m/Y à H:i') }}</td>
                                 <td><span class="badge badge-light">admin</span></td>
                                 <td>
-                                    <a href="#" class="btn btn-warning btn-sm" title="RETROGRADER"><big>&#9733;</big></a>&nbsp;
-                                    <div class="btn btn-danger btn-sm btn-delete" title="SUPPRIMER"><big>&nbsp;&#x1F5D1;</big></div>&nbsp;
-                                    <a class="btn btn-light btn-sm btn-hide" title="ANNULER">&#10006;</a>&nbsp;
-                                    <a href="{{ path('user_delete', {'id': user.id }) }}" class="btn btn-dark btn-sm btn-confirm" title="CONFIRMER">&#10004;</a>
+                                    {% if user.username != app.user.username %}
+                                        <a href="{{ path('demote_user', {'id': user.id }) }}" class="btn btn-warning btn-sm" title="RETROGRADER"><big>&#9734;</big></a>&nbsp;
+                                        <div class="btn btn-danger btn-sm btn-delete" title="SUPPRIMER"><big>&nbsp;&#x1F5D1;</big></div>&nbsp;
+                                        <a class="btn btn-light btn-sm btn-hide" title="ANNULER">&#10006;</a>&nbsp;
+                                        <a href="{{ path('user_delete', {'id': user.id }) }}" class="btn btn-dark btn-sm btn-confirm" title="CONFIRMER">&#10004;</a>
+                                    {% else %}
+                                        <i>C'est moi</i>
+                                    {% endif %}
                                 </td>
                             </tr>
                             {% else %}

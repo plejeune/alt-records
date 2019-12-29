@@ -5,7 +5,7 @@ namespace App\EventListener;
 use App\Entity\Article;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 
-class TodoListener {
+class PostPersistListener {
 
     public function postPersist(LifecycleEventArgs $args) {
 

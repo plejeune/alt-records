@@ -8,18 +8,28 @@ use Doctrine\Common\Persistence\ObjectManager;
 use App\Repository\UserRepository;
 use App\Repository\CommentRepository;
 use App\Repository\ArticleRepository;
+use App\Repository\TagRepository;
 use App\Entity\User;
 use App\Entity\Comment;
 use App\Entity\Article;
+use App\Entity\Tag;
 
 class AdminController extends AbstractController
 {
     /**
      * @Route("/admin", name="security_admin")
      */
-    public function admin() {
+    public function admin(UserRepository $Urepo, ArticleRepository $Arepo, CommentRepository $Crepo) {
 
-        return $this->render('admin/admin.html.twig');
+        $users = $Urepo->findAll();
+        $articles = $Arepo->findAll();
+        $comments = $Crepo->findAll();
+
+        return $this->render('admin/admin.html.twig', [
+            'users' => $users,
+            'articles' => $articles,
+            'comments' => $comments
+        ]);
     }
 
     /**
@@ -43,6 +53,19 @@ class AdminController extends AbstractController
         $users = $repo->findAll();
 
         return $this->render('admin/list/onlineUsers.html.twig', [
+            'users' => $users
+        ]);
+
+    }
+
+    /**
+     * @Route("/admin/list/blockedusers", name="blocked_users")
+     */
+    public function blockedUsers(UserRepository $repo) {
+
+        $users = $repo->findAll();
+
+        return $this->render('admin/list/blockedUsers.html.twig', [
             'users' => $users
         ]);
 
@@ -135,5 +158,81 @@ class AdminController extends AbstractController
     public function aUserDeleted() {
 
         return $this->render('admin/userdelete.html.twig');
+    }
+
+    /**
+     * @Route("/admin/block/user/{id}", name="block_user")
+     */
+    public function blockUser(User $user, ObjectManager $manager) {
+
+        $user->setBlocked("true");
+
+        $manager->persist($user);
+        $manager->flush();
+
+        $this->addFlash(
+            'blocked',
+            'L\'utilisateur a été blacklisté.'
+        );
+
+        return $this->redirectToRoute('security_admin');
+
+    }
+
+    /**
+     * @Route("/admin/unblock/user/{id}", name="unblock_user")
+     */
+    public function unblockUser(User $user, ObjectManager $manager) {
+
+        $user->setBlocked("false");
+
+        $manager->persist($user);
+        $manager->flush();
+
+        $this->addFlash(
+            'unblocked',
+            'L\'utilisateur n\'est plus blacklisté.'
+        );
+
+        return $this->redirectToRoute('security_admin');
+
+    }
+
+    /**
+     * @Route("/admin/promote/user/{id}", name="promote_user")
+     */
+    public function promoteUser(User $user, ObjectManager $manager) {
+
+        $user->setRole("ROLE_ADMIN");
+
+        $manager->persist($user);
+        $manager->flush();
+
+        $this->addFlash(
+            'promote',
+            'L\'utilisateur a été promu au rôle ADMIN.'
+        );
+
+        return $this->redirectToRoute('security_admin');
+
+    }
+
+    /**
+     * @Route("/admin/demote/user/{id}", name="demote_user")
+     */
+    public function demoteUser(User $user, ObjectManager $manager) {
+
+        $user->setRole("ROLE_USER");
+
+        $manager->persist($user);
+        $manager->flush();
+
+        $this->addFlash(
+            'demote',
+            'L\'utilisateur a été rétrogradé au rôle USER.'
+        );
+
+        return $this->redirectToRoute('security_admin');
+
     }
 }

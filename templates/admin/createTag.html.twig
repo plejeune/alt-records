@@ -1,1 +1,18 @@
-{{ form(form) }}
+{% extends 'layout/base-admin.html.twig' %}
+
+{% block body %}
+
+    <section class="mt-5 list2">
+        <h1>Ajouter un tag</h1>
+        <br>
+
+        {{ form_start(form) }} 
+            {{ form_row(form.name, {'attr': {'placeholder': "Votre tag"}}) }}
+            <br>
+            <b>Sélectionnez un élément du catalogue :</b>
+            {{ form_row(form.article) }}
+        {{ form_end(form) }} 
+
+    </section>
+
+{% endblock %}

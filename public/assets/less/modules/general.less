@@ -8,8 +8,13 @@ body {
 }
 
 .bg-admin {
-    background-image: url();
-    background-color: lightgray;
+    // background-image: url();
+    // background-color: lightgray;
+
+    background-image: url(../images/alt_bg_admin.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .clear {
@@ -123,6 +128,7 @@ body {
 .contact,
 .admin, 
 .list,
+.list2,
 .search {
     background-image:linear-gradient(
         rgba(255,255,255, .5),
@@ -138,7 +144,14 @@ body {
 .list {
     background-image:linear-gradient(
         rgba(255,255,255, .3),
-        rgba(255,255,255, 0)
+        rgba(255,255,255, .8)
+    );
+}
+
+.list2 {
+    background-image:linear-gradient(
+        rgba(255,255,255, .5),
+        rgba(255,255,255, .0)
     );
 }
 
@@ -147,6 +160,10 @@ body {
 }
 
 .create {
+    background-image:linear-gradient(
+        rgba(255,255,255, .5),
+        rgba(255,255,255, 0)
+    );
     height: 550px;
 }
 
@@ -161,6 +178,7 @@ body {
     border-radius: 10px;
     padding: 15px;
     margin-right: 10px;
+    height: 320px;
 }
 
 .box a {
@@ -174,6 +192,13 @@ body {
 
 .date {
     font-size: 14px;
+}
+
+.bubble {
+    background-color: whitesmoke;
+    color: #000;
+    padding: 2px 4px;
+    border-radius: 5px;
 }
 
 .sub-options {

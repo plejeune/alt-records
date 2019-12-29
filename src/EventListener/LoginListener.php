@@ -4,10 +4,12 @@ namespace App\EventListener;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
+use \Symfony\Bundle\FrameworkBundle\Controller\ControllerTrait;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\User;
 
-class LoginListener
-{
+class LoginListener extends AbstractController {
+
     private $em;
 
     public function __construct(EntityManagerInterface $em)
@@ -23,5 +25,10 @@ class LoginListener
 
         $this->em->persist($user);
         $this->em->flush();
+
+        $this->addFlash(
+            'logged',
+            'Vous êtes connecté.'
+        );
     }
 }

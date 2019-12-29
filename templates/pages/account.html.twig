@@ -2,7 +2,15 @@
 
 {% block body %}
 
+    {# FLASHES #}
+
     {% for message in app.flashes('resignin') %}
+        <div class="alert alert-light mb-m100">
+            {{ message }} <a href="{{ path('my_account', {'username': app.user.username, 'id': app.user.id}) }}" class="close_x">&#10005;</a>
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('com_deleted') %}
         <div class="alert alert-light mb-m100">
             {{ message }} <a href="{{ path('my_account', {'username': app.user.username, 'id': app.user.id}) }}" class="close_x">&#10005;</a>
         </div>
@@ -33,7 +41,7 @@
                             <td><b>**********</b></td>
                         </tr>
                         <tr>
-                            <td class="lightgrey">Rôle/statut</td>
+                            <td class="lightgrey">Rôle actuel</td>
                             {% if app.user.role == "ROLE_ADMIN" %}
                                 <td><b class="badge badge-secondary">admin</b></td>
                             {% else %}

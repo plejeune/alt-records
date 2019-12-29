@@ -105,10 +105,19 @@ class Article
      */
     private $comments;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="article")
+     */
+    private $tags;
+
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+    }
+
+    public function __toString() {
+        return $this->title;
     }
 
     public function getId(): ?int
@@ -284,6 +293,18 @@ class Article
         return $this;
     }
 
+    public function getTag(): ?Tag
+    {
+        return $this->tag;
+    }
+
+    public function setTag(?Tag $tag): self
+    {
+        $this->tag = $tag;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Comment[]
      */
@@ -315,30 +336,4 @@ class Article
         return $this;
     }
 
-    /**
-     * @return Collection|Tag[]
-     */
-    public function getTags(): Collection
-    {
-        return $this->tags;
-    }
-
-    public function addTag(Tag $tag): self
-    {
-        if (!$this->tags->contains($tag)) {
-            $this->tags[] = $tag;
-            $tag->setArticle($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTag(Tag $tag): self
-    {
-        if ($this->tags->contains($tag)) {
-            $this->tags->removeElement($tag);
-        }
-
-        return $this;
-    }
 }

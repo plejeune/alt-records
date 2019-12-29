@@ -1,0 +1,12 @@
+
+{% block body %}
+
+    {# redirection gérée dans le script redirect.js #}
+    {% block javascripts %}
+        <script src="{{ asset('assets/js/redirect.js') }}"></script>
+    {% endblock %}
+    
+    {# redirection après 3 secondes #}
+    <script>setTimeout(redir3,1000);</script>
+
+{% endblock %}

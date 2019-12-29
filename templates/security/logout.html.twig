@@ -2,16 +2,20 @@
 
 {% block body %}
 
-    <div class="alert alert-light mb-m75">
-        Vous êtes déconnecté. <a href="{{ path('home') }}" class="close_x">&#10005;</a>
-    </div>
+    {# FLASHES #}
+    
+    {% for message in app.flashes('loggedOut') %}
+        <div class="alert alert-light mb-m75">
+            {{ message }} <a href="{{ path('home') }}" class="close_x">&#10005;</a>
+        </div>
+    {% endfor %}
 
     {# redirection gérée dans le script redirect.js #}
     {% block javascripts %}
         <script src="{{ asset('assets/js/redirect.js') }}"></script>
     {% endblock %}
     
-    {# redirection après 3 secondes #}
-    <script>setTimeout(redir,3000);</script>
+    {# redirection après 4 secondes #}
+    <script>setTimeout(redir,4000);</script>
 
 {% endblock %}

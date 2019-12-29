@@ -2,6 +2,8 @@
 
 {% block body %}
 
+    {# FLASHES #}
+
     {% for message in app.flashes('logged') %}
         {% if loop.first %}
             <div class="alert alert-light mb-m75">

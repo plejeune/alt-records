@@ -2,6 +2,8 @@
 
 {% block body %}
 
+    {# FLASHES #}
+
     {% for message in app.flashes('signin') %}
         <div class="alert alert-light mb-m50">
             {{ message }} <a href="{{ path('security_login') }}" class="close_x">&#10005;</a>

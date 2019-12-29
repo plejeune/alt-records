@@ -1,22 +1,24 @@
 {% extends 'layout/base.html.twig' %}
 
-{% block body %} 
+{% block body %}
+
+    {# FLASHES #}
 
     {% for message in app.flashes('post') %}
         <div class="alert alert-light">
-            {{ message }} <a href="{{ path('blog_show', { 'slug': article.slug}) }}"><span class="close_x">&#10005;</span></a>
+            {{ message }} <a href="{{ path('blog_show', { 'slug': article.slug}) }}" class="close_x">&#10005;</a>
         </div>
     {% endfor %}
 
     {% for message in app.flashes('repost') %}
         <div class="alert alert-light">
-            {{ message }} <a href="{{ path('blog_show', { 'slug': article.slug}) }}"><span class="close_x">&#10005;</span></a>
+            {{ message }} <a href="{{ path('blog_show', { 'slug': article.slug}) }}" class="close_x">&#10005;</a>
         </div>
     {% endfor %}
 
     {% for message in app.flashes('comment') %}
         <div class="alert alert-light">
-            {{ message }} <a href="{{ path('blog_show', { 'slug': article.slug}) }}"><span class="close_x">&#10005;</span></a>
+            {{ message }} <a href="{{ path('blog_show', { 'slug': article.slug}) }}" class="close_x">&#10005;</a>
         </div>
     {% endfor %}
 
@@ -65,23 +67,33 @@
                         </tr>
                     </table>
 
+                    <div class="ml-50 tags">
+                        {% for tag in tags %}
+                            {% if tag.article == article.title %}
+                                <a href="{{ path('tag', { 'name': tag.name }) }}" class="badge badge-dark">{{ tag.name }}</a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
                     <div class="ml-50 mg-10 grey item-info">
-                        <!-- <h4 class="lightgrey">Description</h4> -->
-                        <!-- <p class="capitalize">{{ article.content | raw }}</p> -->
+                        {# <h4 class="lightgrey">Description</h4>
+                        <p class="capitalize">{{ article.content | raw }}</p> #}
                         <p>Ajouté au catalogue le <b>{{ article.createdAt | date('d/m/Y') }}</b> par <b>{{ article.author }}</b><br>
                         Modifié le <b>{{ article.modifiedAt | date('d/m/Y') }}</b> par <b>{{ article.author }}</b></p>              
                     </div>
 
+                    <hr class="ml-50 w-100">
+
                 {% if app.user.role == "ROLE_ADMIN" %}
                     <div class="item-buttons ml-50 mg-30">
-                        <a href="{{ path('catalogue') }}" class="btn btn-light btn-sm">&#8617; &nbsp;Retour au catalogue</a> &nbsp; 
-                        <a href="{{ path('report_item', { 'id': article.id }) }}" class="btn btn-warning btn-sm">&#9888; &nbsp;Signaler</a><br><br>
+                        <a href="{{ path('catalogue') }}" class="btn btn-light btn-sm">&#8617; &nbsp;Catalogue</a> &nbsp; 
+                        <a href="{{ path('report_item', { 'id': article.id }) }}" class="btn btn-warning btn-sm">&#9888; &nbsp;Signaler</a> &nbsp; 
                         <a href="{{ path('blog_edit', { 'id': article.id }) }}" class="btn btn-primary btn-sm">&#9998; &nbsp;Modifier</a> &nbsp; 
                         <div class="btn btn-danger btn-sm del_btn">&#10006; &nbsp;Supprimer</div>
                     </div>
                 {% else %}
 
-                    <a href="{{ path('catalogue') }}" class="btn btn-light ml-50 mg-20">&#8617; &nbsp;Retour au catalogue</a> &nbsp;
+                    <a href="{{ path('catalogue') }}" class="btn btn-light btn-sm ml-50">&#8617; &nbsp;Retour au catalogue</a> &nbsp;
                     <a href="{{ path('report_item', { 'id': article.id }) }}" class="btn btn-warning btn-sm">&#9888; &nbsp;Signaler</a><br>
 
                 {% endif %}
@@ -124,7 +136,7 @@
             </div>
         {% endfor %}
 
-        {% if app.user %}
+        {% if app.user and app.user.blocked != "true" %}
 
             {% set user_now = app.user.username %}
             <hr class="ml-20 mr-20">
@@ -140,8 +152,10 @@
                 {{ form_end(commentForm) }}
 
         {% else %}
-                <h4>Vous ne pouvez pas commenter si vous n'êtes pas connecté</h4>
-                <a href="{{ path('security_login') }}" class="btn btn-primary">Connexion</a>
+                <div class="ml-20">
+                    <h4 class="text-danger">Vous ne pouvez pas commenter car votre compte a été suspendu.</h4>
+                    <a href="{{ path('catalogue') }}" class="btn btn-primary">Retour</a>
+                </div>
         {% endif %}
 
             </div>

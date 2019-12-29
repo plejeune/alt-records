@@ -68,6 +68,11 @@ class User implements UserInterface
      */
     private $online;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $blocked;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -165,6 +170,18 @@ class User implements UserInterface
     public function setOnline(string $online): self
     {
         $this->online = $online;
+
+        return $this;
+    }
+
+    public function getBlocked(): ?string 
+    {
+        return $this->blocked;
+    }
+
+    public function setBlocked(string $blocked): self
+    {
+        $this->blocked = $blocked;
 
         return $this;
     }

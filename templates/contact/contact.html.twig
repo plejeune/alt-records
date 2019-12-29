@@ -4,6 +4,8 @@
 
     {% if app.user %}
 
+        {# FLASHES #}
+
         {% for message in app.flashes('contactok') %}
             {% if loop.first %}
                 <div class="alert alert-light mb-m75">

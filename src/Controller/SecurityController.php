@@ -11,6 +11,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\User;
 use App\Form\RegistrationType;
 use App\Repository\UserRepository;
@@ -40,6 +41,8 @@ class SecurityController extends AbstractController {
 
                 $user->setCreatedAt(new \DateTime());
                 $user->setRole("ROLE_USER");
+                $user->setOnline("false");
+                $user->setBlocked("false");
                 /* $user->addRole("ROLE_USER"); */
 
                 $manager->persist($user);
@@ -78,12 +81,23 @@ class SecurityController extends AbstractController {
      */
     public function login() {
 
-        $this->addFlash(
-            'logged',
-            'Vous êtes connecté.'
-        );
-
         return $this->render('security/login.html.twig');
+    }
+
+    /**
+     * @Route("/action/deconnexion", name="logging_out")
+     */
+    public function logginOut(UserRepository $user, EntityManagerInterface $em) {
+
+        $this->em = $em;
+
+        $user = $this->getUser();
+        $user->setOnline("false");
+
+        $this->em->persist($user);
+        $this->em->flush();
+
+        return $this->render('security/logginout.html.twig');
     }
 
     /**

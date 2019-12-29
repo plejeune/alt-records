@@ -1,0 +1,13 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block body %}
+
+
+        {% for tag in tags if tag.name == name %}
+            
+            <a href="{{ path('blog_show', {'slug': tag.article }) }}">{{ tag.article }}</a><br>
+            
+        {% endfor %}
+    
+
+{% endblock %}
