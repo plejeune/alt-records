@@ -25,9 +25,7 @@ class Tag
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
      * @ORM\Column(name="article", type="string", length=255)
-     * @ORM\ManyToMany(targetEntity="App\Entity\Article", mappedBy="tags")
      */
     private $article;
 

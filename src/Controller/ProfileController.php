@@ -65,6 +65,6 @@ class ProfileController extends AbstractController
      */
     public function userDeleted() {
 
-        return $this->render('admin/delete.html.twig');
+        return $this->render('admin/delete/delete.html.twig');
     }
 }

@@ -39,7 +39,7 @@ class TagController extends AbstractController
             return $this->redirectToRoute("security_admin");
         }
 
-        return $this->render('/admin/createTag.html.twig',[
+        return $this->render('/admin/create/createTag.html.twig',[
             'form' => $form->createView()
         ]);
 
@@ -48,13 +48,14 @@ class TagController extends AbstractController
     /**
      * @Route("/tag/{name}",name="tag")
      */
-    public function tagShow(Article $article = null, TagRepository $tRepo, $name, Request $request) {
+    public function tagShow(TagRepository $tRepo, ArticleRepository $aRepo, $name, Request $request) {
 
         $tags = $tRepo->findAll();
+        $articles = $aRepo->findAll();
 
         return $this->render('pages/tag.html.twig', [
-            'article' => $article,
             'tags' => $tags,
+            'articles' => $articles,
             'name' => $name
         ]);
     }

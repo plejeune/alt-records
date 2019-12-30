@@ -57,15 +57,15 @@
 
             <div class="board relative">
 
-                <h1>TABLEAU DE BORD &nbsp; &nbsp; <small class="grey align-right absolute mg-20 date">Bonjour, <b class="text-primary">{{ app.user.username }}</b>. &nbsp; | &nbsp; Nous sommes le <span id="date"></span></small></h1>
-                <hr class="mb-50">
+                <h1>Tableau de bord</h1>
+                <hr class="mb-30">
 
                 {# BLOCK CATALOGUE #}
 
                 <div class="w-25 box text-center">
-                    <h4 class="uppercase grey">Catalogue & items</h4>
+                    <h4 class="uppercase grey">Catalogue &#38; items</h4>
                     <hr class="ml-10 mr-10">
-                    <a href="{{ path('list_items') }}" class="btn btn-dark btn-sm mb-10 text-left">
+                    <a href="{{ path('list_items') }}" class="btn btn-dark btn-sm text-left">
                         <big class="bubble">&#x1F441; 
                             {% if articles %}
                                 <span class="text-danger">{{ articles | length }}</span>
@@ -73,7 +73,7 @@
                         </big> &nbsp; &nbsp; Tous les éléments
                     </a><br>
                     <hr class="ml-10 mr-10">
-                    <a href="{{ path('reported_items') }}" class="btn btn-warning btn-sm mb-10 text-left">
+                    <a href="{{ path('reported_items') }}" class="btn btn-warning btn-sm text-left">
                         <big class="bubble">&#9888; 
                             {% set rep1 = 0 %}
                             {% for article in articles if article.reported == "true" %}
@@ -96,7 +96,7 @@
                 <div class="w-25 box text-center">
                     <h4 class="uppercase grey">Commentaires</h4>
                     <hr class="ml-10 mr-10">
-                    <a href="{{ path('list_comments') }}" class="btn btn-dark btn-sm mb-10 text-left">
+                    <a href="{{ path('list_comments') }}" class="btn btn-dark btn-sm text-left">
                         <big class="bubble">&#x1F441; 
                             {% if comments %}
                                 <span class="text-danger">{{ comments | length }}</span>
@@ -120,7 +120,7 @@
                 <div class="w-25 box text-center">
                     <h4 class="uppercase grey">Utilisateurs</h4>
                     <hr class="ml-10 mr-10">
-                    <a href="{{ path('list_users') }}" class="btn btn-dark btn-sm mb-10 text-left">
+                    <a href="{{ path('list_users') }}" class="btn btn-dark btn-sm text-left">
                         <big class="bubble">&#x1F441; 
                             {% if users %}
                                 <span class="text-danger">{{ users | length }}</span>
@@ -137,7 +137,7 @@
                             <span class="text-danger">{{ rep }}</span>
                         </big> &nbsp; &nbsp; Utilisateurs en ligne<big>
                     </a><br>
-                    <a href="{{ path('blocked_users') }}" class="btn btn-danger btn-sm mb-10 text-left">
+                    <a href="{{ path('blocked_users') }}" class="btn btn-danger btn-sm text-left">
                         <big class="bubble">&#8856;
                             {% set rep = 0 %}
                             {% for user in users if user.blocked == "true" %}
@@ -163,13 +163,19 @@
                 <div class="w-20 box git text-center">
                     <h4 class="uppercase grey">Git</h4>
                     <hr class="ml-10 mr-10 mb-20">
-                    <a href="https://github.com/plejeune/alt-records" target="_blank" class="btn btn-light btn-sm mb-20 text-left"><big class="bubble">&#128498;</big> &nbsp; &nbsp; Dépôt Github</a><br>
-                    <a href="https://bitbucket.org/palejeune/alt-records" target="_blank" class="btn btn-light btn-sm text-left"><big class="bubble">&#128498;</big> &nbsp; &nbsp; Dépôt Bitbucket</a>
+                    <a href="https://github.com/plejeune/alt-records" target="_blank" class="btn btn-light btn-sm mb-15 text-left"><big class="bubble">&#8886;</big> &nbsp; &nbsp; Dépôt Github</a><br>
+                    <a href="https://bitbucket.org/palejeune/alt-records" target="_blank" class="btn btn-light btn-sm mb-10 text-left"><big class="bubble">&#8886;</big> &nbsp; &nbsp; Dépôt Bitbucket</a>
+                    <br><br>
+                    <h4 class="uppercase grey">Chatbox</h4>
+                    <hr class="ml-10 mr-10 mb-20">
+                    <a href="https://app.crisp.chat/website/0afd79ae-3f0e-45a1-914e-7c01dad73672/inbox" target="_blank" class="btn btn-light btn-sm text-left"><big class="bubble">&#128498;</big> &nbsp; &nbsp; Api.Crisp.chat</a>
                 </div>
 
             </div>
 
-            {# <hr class="mt-30"> #}
+            <div class="clear"></div>
+                <hr class="mg-30">
+            
 
         {% else %}
 
@@ -179,13 +185,5 @@
         {% endif %}
 
     </section>
-
-    {# Date gérée dans le script clock.js #}
-
-    {% block javascripts %}
-        <script src="{{ asset('assets/js/clock.js') }}"></script>
-        <script>setTimeout(date,100);</script>
-    {% endblock %}
-
 
 {% endblock %}

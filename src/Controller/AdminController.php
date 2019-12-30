@@ -157,7 +157,7 @@ class AdminController extends AbstractController
      */
     public function aUserDeleted() {
 
-        return $this->render('admin/userdelete.html.twig');
+        return $this->render('admin/delete/userdelete.html.twig');
     }
 
     /**

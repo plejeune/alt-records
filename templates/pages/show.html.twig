@@ -27,7 +27,7 @@
         <article class="item">
             
             <div class="metadata mb-20 ml-20 mg-10 mr-20">
-                Catalogue / Item / <span class="text-success">{{ article.id }}</span>
+                Catalogue / Item / <span class="text-success">{{ article.artist }} { {{ article.title }} }</span>
                 <hr>
             </div>
 
@@ -70,10 +70,10 @@
                     <div class="ml-50 tags">
                         {% for tag in tags %}
                             {% if tag.article == article.title %}
-                                <a href="{{ path('tag', { 'name': tag.name }) }}" class="badge badge-dark">{{ tag.name }}</a>
+                                <a href="{{ path('tag', { 'name': tag.name }) }}" class="tag">&#9675; &nbsp; {{ tag.name }} &nbsp; </a>
                             {% endif %}
                         {% endfor %}
-                    </div>
+                    </div><br>
 
                     <div class="ml-50 mg-10 grey item-info">
                         {# <h4 class="lightgrey">Description</h4>

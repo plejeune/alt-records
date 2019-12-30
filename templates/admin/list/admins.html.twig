@@ -9,7 +9,7 @@
 
         {% elseif app.user and app.user.role == "ROLE_ADMIN" %}
 
-            <div class="mt-10 list">
+            <div class="mt-10 list2">
                 <h1>Liste des admins</h1>
                 <br>      
                 <table class="table table-hover users">
@@ -51,12 +51,14 @@
                         {% endfor %}
                     </tbody>
                 </table> 
-            </div>    
+            </div>
+
+            <a href="{{ path('security_admin') }}" class="btn btn-light btn-sm ml-20">&#8617; Retour</a>
 
         {% else %}
 
             <p>Vous n'avez pas accès à cette page</p>
-            <a href="{{ path('home') }}" class="btn btn-light">&#8617; Retour</a>
+            <a href="{{ path('home') }}" class="btn btn-light">&#8617; Retour au tableau de bord</a>
                 
         {% endif %}
 

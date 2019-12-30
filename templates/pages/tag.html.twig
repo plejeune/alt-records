@@ -2,12 +2,27 @@
 
 {% block body %}
 
-
-        {% for tag in tags if tag.name == name %}
-            
-            <a href="{{ path('blog_show', {'slug': tag.article }) }}">{{ tag.article }}</a><br>
-            
+    <section>
+        <h2 class="ml-10">&#10140; Eléments correspondants au tag "<span class="text-warning">{{ name }}</span>"</h2>
+        <br>
+        {% for tag in tags %}
+            {% for article in articles if tag.name == name %}
+                {% if tag.article == article.title %}
+                    <article class="catalog_list">
+                        <div class="content">
+                            <a href="{{ path('blog_show', {'slug': article.slug}) }}"><img src="{{ article.image }}">   
+                            <div class="overlay">
+                                <div class="text">{{ article.artist }} - {{ article.title }}</div>
+                            </div></a>
+                        </div>
+                    </article>
+                {% endif %}
+            {% endfor %}
         {% endfor %}
-    
+    </section>
+
+    <div class="clear">
+        <a href="{{ path('catalogue') }}" class="btn btn-light btn-sm ml-10 mg-20">&#8617; &nbsp;Retour au catalogue</a>
+    </div>
 
 {% endblock %}

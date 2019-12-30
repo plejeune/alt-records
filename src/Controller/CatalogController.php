@@ -101,7 +101,7 @@ class CatalogController extends AbstractController {
             return $this->redirectToRoute('blog_show', ['slug' => $article->getSlug()]);
         }
 
-        return $this->render('admin/create.html.twig', [
+        return $this->render('admin/create/create.html.twig', [
             'formArticle' => $form->createView(),
             'article' => $article,
             'editMode' => $article->getId() !== null

@@ -30,6 +30,9 @@
                         <li class="nav-item">
                             <a href="{{ path('logging_out') }}" class="nav-link">&#9826; Déconnexion</a>
                         </li>
+                        <li class="nav-item">
+                            <small class="align-right-0 absolute mg-8 date">Bonjour, <b>{{ app.user.username }}</b>. &nbsp; | &nbsp; <span id="date"></span></small>
+                        </li>
                     {% else %}
                         <li></li>
                     {% endif %}
@@ -41,6 +44,13 @@
         <div class="container">
             {% block body %}{% endblock %}
         </div>
+
+        {# Date gérée dans le script clock.js #}
+
+        {% block javascripts %}
+            <script src="{{ asset('assets/js/date.js') }}"></script>
+            <script>setTimeout(date,100);</script>
+        {% endblock %}
 
     </body>
     

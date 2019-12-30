@@ -19,7 +19,6 @@ class TagType extends AbstractType
                     'class' => Article::class,
                     'choice_label' => 'slug'
                 ])
-                ->add('Taguer cet element', SubmitType::class)
         ;
     }
 

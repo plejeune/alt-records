@@ -2,7 +2,7 @@
 
 {% block body %}
 
-    <section class="mt-5 list2">
+    <section class="mt-8 list2">
         <h1>Ajouter un tag</h1>
         <br>
 
@@ -11,6 +11,9 @@
             <br>
             <b>Sélectionnez un élément du catalogue :</b>
             {{ form_row(form.article) }}
+
+            <button type="submit" class="btn btn-primary mg-20">Taguer cet élément</button> &nbsp; 
+            <a href="{{ path('security_admin') }}" class="btn btn-light mg-20">Annuler</a>
         {{ form_end(form) }} 
 
     </section>
