@@ -2,27 +2,35 @@
 
 {% block body %}
 
-    <section>
-        <h2 class="ml-10">&#10140; Eléments correspondants au tag "<span class="text-warning">{{ name }}</span>"</h2>
-        <br>
-        {% for tag in tags %}
-            {% for article in articles if tag.name == name %}
-                {% if tag.article == article.title %}
-                    <article class="catalog_list">
-                        <div class="content">
-                            <a href="{{ path('blog_show', {'slug': article.slug}) }}"><img src="{{ article.image }}">   
-                            <div class="overlay">
-                                <div class="text">{{ article.artist }} - {{ article.title }}</div>
-                            </div></a>
-                        </div>
-                    </article>
-                {% endif %}
-            {% endfor %}
-        {% endfor %}
-    </section>
+    {% if app.user %}
 
-    <div class="clear">
+        <section>
+            <h2 class="ml-10">&#10140; Eléments correspondants au tag "<span class="text-warning">{{ name }}</span>"</h2>
+            <br>
+            {% for tag in tags %}
+                {% for article in articles if tag.name == name %}
+                    {% if tag.article == article.title %}
+                        <article class="catalog_list light">
+                            <div class="content">
+                                <a href="{{ path('blog_show', {'slug': article.slug}) }}"><img src="{{ article.image }}">   
+                                    <div class="overlay">
+                                        <div class="text">{{ article.artist }} - {{ article.title }}</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </article>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </section>
+
+        <div class="clear"></div>
         <a href="{{ path('catalogue') }}" class="btn btn-light btn-sm ml-10 mg-20">&#8617; &nbsp;Retour au catalogue</a>
-    </div>
+
+    {% else %}
+
+        <a href="{{ path('security_login') }}" class="btn btn-light btn-sm ml-10 mg-20">Connexion</a>
+
+    {% endif %}
 
 {% endblock %}

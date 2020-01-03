@@ -194,7 +194,7 @@ body {
     box-shadow: 1px 1px 20px 1px #c0c0c0;
     background-color: rgba(173, 216, 230, .2);
     border: 1px solid rgba(0,0,0, .2);
-    border-radius: 10px;
+    border-radius: 3px;
     padding: 15px;
     margin-right: 14px;
     height: 290px;
@@ -202,6 +202,17 @@ body {
 
 .box a {
     width: 94%;
+}
+
+.box h4:hover, #admin-info:hover, #admin-info2:hover {
+    cursor: pointer;
+}
+
+#admin-info-table {
+    background-color: rgba(173, 216, 230, .3);
+    border: 1px solid rgba(0,0,0, .2);
+    border-radius: 3px;
+    padding: 15px;
 }
 
 .git {
@@ -216,8 +227,8 @@ body {
 .date {
     background-color: rgba(255,255,255,.3);
     padding: 5px 30px 5px 15px;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius:10px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius:5px;
     font-size: 14px;
 }
 
@@ -269,4 +280,53 @@ footer {
     padding-top: 13px;
     padding-bottom: 2px;
     padding-right: 30px;
+}
+
+.light .content {
+	position: relative;
+}
+.light .content::before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 2;
+	display: block;
+	content: '';
+	width: 0;
+	height: 0;
+	background: rgba(255,255,255,.2);
+	border-radius: 100%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	opacity: 0;
+}
+.light .content:hover::before {
+	-webkit-animation: circle .75s;
+	animation: circle .75s;
+}
+@-webkit-keyframes circle {
+	0% {
+		opacity: 1;
+	}
+	40% {
+		opacity: 1;
+	}
+	100% {
+		width: 200%;
+		height: 200%;
+		opacity: 0;
+	}
+}
+@keyframes circle {
+	0% {
+		opacity: 1;
+	}
+	40% {
+		opacity: 1;
+	}
+	100% {
+		width: 200%;
+		height: 200%;
+		opacity: 0;
+	}
 }

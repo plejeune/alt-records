@@ -37,7 +37,7 @@
 
             <section class="articles Pop">
                 {% if article.category.description == "Pop" %}
-                    <article class="catalog_list">
+                    <article class="catalog_list light">
                         <div class="content">
                             <a href="{{ path('blog_show', {'slug': article.slug}) }}"><img src="{{ article.image }}">   
                             <div class="overlay">
@@ -52,7 +52,7 @@
 
             <section class="articles Rock">
                 {% if article.category.description == "Rock" %}
-                    <article class="catalog_list">
+                    <article class="catalog_list light">
                         <div class="content">
                             <a href="{{ path('blog_show', {'slug': article.slug}) }}"><img src="{{ article.image }}">   
                             <div class="overlay">
@@ -67,7 +67,7 @@
 
             <section class="articles Metal">
                 {% if article.category.description == "Metal" %}
-                    <article class="catalog_list">
+                    <article class="catalog_list light">
                         <div class="content">
                             <a href="{{ path('blog_show', {'slug': article.slug}) }}"><img src="{{ article.image }}">   
                             <div class="overlay">
@@ -82,7 +82,7 @@
 
             <section class="articles Grunge">
                 {% if article.category.description == "Grunge" %}
-                    <article class="catalog_list">
+                    <article class="catalog_list light">
                         <div class="content">
                             <a href="{{ path('blog_show', {'slug': article.slug}) }}"><img src="{{ article.image }}">   
                             <div class="overlay">

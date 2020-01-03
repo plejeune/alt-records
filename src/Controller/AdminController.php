@@ -4,11 +4,17 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+
 use Doctrine\Common\Persistence\ObjectManager;
+
 use App\Repository\UserRepository;
 use App\Repository\CommentRepository;
 use App\Repository\ArticleRepository;
 use App\Repository\TagRepository;
+
+use Knp\Component\Pager\PaginatorInterface;
+
 use App\Entity\User;
 use App\Entity\Comment;
 use App\Entity\Article;
@@ -100,9 +106,15 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/list/comments", name="list_comments")
      */
-    public function listComments(CommentRepository $repo) {
+    public function listComments(CommentRepository $repo, Request $request, PaginatorInterface $paginator) {
 
-        $comments = $repo->findAll();
+        // $comments = $repo->findAll();
+
+        $comments = $paginator->paginate(
+            $repo->findAllWithPagination(),
+            $request->query->getInt('page', 1),
+            10
+        );
 
         return $this->render('admin/list/comments.html.twig', [
             'comments' => $comments

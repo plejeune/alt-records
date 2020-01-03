@@ -14,8 +14,8 @@
         </div><br>
 
         {% for article in articles %}
-            <article class="catalog_list draggable">
-                <div class="content">
+            <article class="catalog_list light">
+                <div class="content draggable">
                     {% if app.user %}
                         <a href="{{ path('blog_show', {'slug': article.slug}) }}"><img src="{{ article.image }}">
                         <div class="overlay">

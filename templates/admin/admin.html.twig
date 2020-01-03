@@ -46,7 +46,7 @@
         </div>
     {% endfor %}
 
-    <section class="mt-8">
+    <section class="mt-5">
 
         {% if not app.user %}
 
@@ -62,120 +62,152 @@
 
                 {# BLOCK CATALOGUE #}
 
-                <div class="w-25 box text-center">
-                    <h4 class="uppercase grey">Catalogue &#38; items</h4>
+                <div class="w-25 box text-center box-cat">
+                    <h4 class="uppercase grey btn-cat"><span class="lightgrey">&#9632;</span><span class="text-primary">&#9632;</span> Catalogue</h4>
+                    <h4 class="uppercase grey btn-cat2"><span class="grey">&#9632;</span><span class="lightgrey">&#9632;</span> Catalogue</h4> 
                     <hr class="ml-10 mr-10">
-                    <a href="{{ path('list_items') }}" class="btn btn-dark btn-sm text-left">
-                        <big class="bubble">&#x1F441; 
-                            {% if articles %}
-                                <span class="text-danger">{{ articles | length }}</span>
-                            {% endif %}
-                        </big> &nbsp; &nbsp; Tous les éléments
-                    </a><br>
-                    <hr class="ml-10 mr-10">
-                    <a href="{{ path('reported_items') }}" class="btn btn-warning btn-sm text-left">
-                        <big class="bubble">&#9888; 
-                            {% set rep1 = 0 %}
-                            {% for article in articles if article.reported == "true" %}
-                                {% set rep1 = rep1 + 1 %}
-                            {% endfor %}
-                            <span class="text-danger">{{ rep1 }}</span>
-                        </big> &nbsp; &nbsp; Eléments signalés
-                    </a><br>
-                    <hr class="ml-10 mr-10">
-                    <a href="{{ path('blog_create') }}" class="btn btn-success btn-sm mb-10 text-left">
-                        <big class="bubble"> &#10010; <span class="grey">E</span> </big> &nbsp; &nbsp; Insérer un élément
-                    </a><br>
-                    <a href="{{ path('create_tag') }}" class="btn btn-success btn-sm mb-10 text-left">
-                        <big class="bubble"> &#10010; <span class="grey">T</span> </big> &nbsp; &nbsp; Ajouter un tag
-                    </a>
+                    <span id="cat-box">
+                        <a href="{{ path('list_items') }}" class="btn btn-dark btn-sm text-left">
+                            <big class="bubble">&#x1F441; 
+                                {% if articles %}
+                                    <span class="text-danger">{{ articles | length }}</span>
+                                {% endif %}
+                            </big> &nbsp; &nbsp; Tous les éléments
+                        </a><br>
+                        <hr class="ml-10 mr-10">
+                        <a href="{{ path('reported_items') }}" class="btn btn-warning btn-sm text-left">
+                            <big class="bubble">&#9888; 
+                                {% set rep1 = 0 %}
+                                {% for article in articles if article.reported == "true" %}
+                                    {% set rep1 = rep1 + 1 %}
+                                {% endfor %}
+                                <span class="text-danger">{{ rep1 }}</span>
+                            </big> &nbsp; &nbsp; Eléments signalés
+                        </a><br>
+                        <hr class="ml-10 mr-10">
+                        <a href="{{ path('blog_create') }}" class="btn btn-success btn-sm mb-10 text-left">
+                            <big class="bubble"> &#10010; <span class="grey">E</span> </big> &nbsp; &nbsp; Insérer un élément
+                        </a><br>
+                        <a href="{{ path('create_tag') }}" class="btn btn-success btn-sm mb-10 text-left">
+                            <big class="bubble"> &#10010; <span class="grey">T</span> </big> &nbsp; &nbsp; Ajouter un tag
+                        </a>
+                    </span>
                 </div>
 
                 {# BLOCK COMMENTS #}
 
-                <div class="w-25 box text-center">
-                    <h4 class="uppercase grey">Commentaires</h4>
+                <div class="w-25 box text-center box-com">
+                    <h4 class="uppercase grey btn-com"><span class="lightgrey">&#9632;</span><span class="text-primary">&#9632;</span> Commentaires</h4>
+                    <h4 class="uppercase grey btn-com2"><span class="grey">&#9632;</span><span class="lightgrey">&#9632;</span> Commentaires</h4>
                     <hr class="ml-10 mr-10">
-                    <a href="{{ path('list_comments') }}" class="btn btn-dark btn-sm text-left">
-                        <big class="bubble">&#x1F441; 
-                            {% if comments %}
-                                <span class="text-danger">{{ comments | length }}</span>
-                            {% endif %}
-                        </big> &nbsp; &nbsp; Tous les commentaires
-                    </a><br>
-                    <hr class="ml-10 mr-10">
-                    <a href="{{ path('reported_comments') }}" class="btn btn-warning btn-sm mb-10 text-left">
-                        <big class="bubble">&#9888;
-                            {% set rep2 = 0 %}
-                            {% for comment in comments if comment.reported == "true" %}
-                                {% set rep2 = rep2 + 1 %}
-                            {% endfor %}
-                            <span class="text-danger">{{ rep2 }}</span>
-                        </big> &nbsp; &nbsp; Commentaires signalés</a>
-                    <br><br><br>
+                    <span id="com-box">
+                        <a href="{{ path('list_comments') }}" class="btn btn-dark btn-sm text-left">
+                            <big class="bubble">&#x1F441; 
+                                {% if comments %}
+                                    <span class="text-danger">{{ comments | length }}</span>
+                                {% endif %}
+                            </big> &nbsp; &nbsp; Tous les commentaires
+                        </a><br>
+                        <hr class="ml-10 mr-10">
+                        <a href="{{ path('reported_comments') }}" class="btn btn-warning btn-sm mb-10 text-left">
+                            <big class="bubble">&#9888;
+                                {% set rep2 = 0 %}
+                                {% for comment in comments if comment.reported == "true" %}
+                                    {% set rep2 = rep2 + 1 %}
+                                {% endfor %}
+                                <span class="text-danger">{{ rep2 }}</span>
+                            </big> &nbsp; &nbsp; Commentaires signalés</a>
+                        <br><br><br>
+                    </span>
                 </div>
 
                 {# BLOCK USERS #}
 
-                <div class="w-25 box text-center">
-                    <h4 class="uppercase grey">Utilisateurs</h4>
+                <div class="w-25 box text-center box-user">
+                    <h4 class="uppercase grey btn-user"><span class="lightgrey">&#9632;</span><span class="text-primary">&#9632;</span> Utilisateurs</h4>
+                    <h4 class="uppercase grey btn-user2"><span class="grey">&#9632;</span><span class="lightgrey">&#9632;</span> Utilisateurs</h4>
                     <hr class="ml-10 mr-10">
-                    <a href="{{ path('list_users') }}" class="btn btn-dark btn-sm text-left">
-                        <big class="bubble">&#x1F441; 
-                            {% if users %}
-                                <span class="text-danger">{{ users | length }}</span>
-                            {% endif %}
-                        </big> &nbsp; &nbsp; Tous les utilisateurs
-                    </a><br>
-                    <hr class="ml-10 mr-10">
-                    <a href="{{ path('online_users') }}" class="btn btn-primary btn-sm mb-10 text-left">
-                        <big class="bubble">&#10084;
-                            {% set rep = 0 %}
-                            {% for user in users if user.online == "true" %}
-                                {% set rep = rep + 1 %}
-                            {% endfor %}
-                            <span class="text-danger">{{ rep }}</span>
-                        </big> &nbsp; &nbsp; Utilisateurs en ligne<big>
-                    </a><br>
-                    <a href="{{ path('blocked_users') }}" class="btn btn-danger btn-sm text-left">
-                        <big class="bubble">&#8856;
-                            {% set rep = 0 %}
-                            {% for user in users if user.blocked == "true" %}
-                                {% set rep = rep + 1 %}
-                            {% endfor %}
-                            <span class="text-danger">{{ rep }}</span>
-                        </big> &nbsp; &nbsp; Utilisateurs blacklistés<big>
-                    </a><br>
-                    <hr class="ml-10 mr-10">
-                    <a href="{{ path('list_admins') }}" class="btn btn-info btn-sm mb-10 text-left">
-                        <big class="bubble">&#9812;
-                            {% set rep = 0 %}
-                            {% for user in users if user.role == "ROLE_ADMIN" %}
-                                {% set rep = rep + 1 %}
-                            {% endfor %}
-                            <span class="text-danger">{{ rep }}</span>
-                        </big> &nbsp; &nbsp; Liste des admins
-                    </a>
+                    <span id="user-box">
+                        <a href="{{ path('list_users') }}" class="btn btn-dark btn-sm text-left">
+                            <big class="bubble">&#x1F441; 
+                                {% if users %}
+                                    <span class="text-danger">{{ users | length }}</span>
+                                {% endif %}
+                            </big> &nbsp; &nbsp; Tous les utilisateurs
+                        </a><br>
+                        <hr class="ml-10 mr-10">
+                        <a href="{{ path('online_users') }}" class="btn btn-primary btn-sm mb-10 text-left">
+                            <big class="bubble">&#10084;
+                                {% set rep = 0 %}
+                                {% for user in users if user.online == "true" %}
+                                    {% set rep = rep + 1 %}
+                                {% endfor %}
+                                <span class="text-danger">{{ rep }}</span>
+                            </big> &nbsp; &nbsp; Utilisateurs en ligne<big>
+                        </a><br>
+                        <a href="{{ path('blocked_users') }}" class="btn btn-danger btn-sm text-left">
+                            <big class="bubble">&#8856;
+                                {% set rep = 0 %}
+                                {% for user in users if user.blocked == "true" %}
+                                    {% set rep = rep + 1 %}
+                                {% endfor %}
+                                <span class="text-danger">{{ rep }}</span>
+                            </big> &nbsp; &nbsp; Utilisateurs blacklistés<big>
+                        </a><br>
+                        <hr class="ml-10 mr-10">
+                        <a href="{{ path('list_admins') }}" class="btn btn-info btn-sm mb-10 text-left">
+                            <big class="bubble">&#9812;
+                                {% set rep = 0 %}
+                                {% for user in users if user.role == "ROLE_ADMIN" %}
+                                    {% set rep = rep + 1 %}
+                                {% endfor %}
+                                <span class="text-danger">{{ rep }}</span>
+                            </big> &nbsp; &nbsp; Liste des admins
+                        </a>
+                    </span>
                 </div>
 
                 {# BLOCK GIT #}
 
-                <div class="w-20 box git text-center">
-                    <h4 class="uppercase grey">Git</h4>
+                <div class="w-20 box git text-center box-git">
+                    <h4 class="uppercase grey btn-git"><span class="lightgrey">&#9632;</span><span class="text-primary">&#9632;</span> Git</h4>
+                    <h4 class="uppercase grey btn-git2"><span class="grey">&#9632;</span><span class="lightgrey">&#9632;</span> Git</h4>
                     <hr class="ml-10 mr-10 mb-20">
-                    <a href="https://github.com/plejeune/alt-records" target="_blank" class="btn btn-light btn-sm mb-15 text-left"><big class="bubble">&#8886;</big> &nbsp; &nbsp; Dépôt Github</a><br>
-                    <a href="https://bitbucket.org/palejeune/alt-records" target="_blank" class="btn btn-light btn-sm mb-10 text-left"><big class="bubble">&#8886;</big> &nbsp; &nbsp; Dépôt Bitbucket</a>
-                    <br><br>
-                    <h4 class="uppercase grey">Chatbox</h4>
-                    <hr class="ml-10 mr-10 mb-20">
-                    <a href="https://app.crisp.chat/website/0afd79ae-3f0e-45a1-914e-7c01dad73672/inbox" target="_blank" class="btn btn-light btn-sm text-left"><big class="bubble">&#128498;</big> &nbsp; &nbsp; Api.Crisp.chat</a>
+                    <span id="git-box">
+                        <a href="https://github.com/plejeune/alt-records" target="_blank" class="btn btn-light btn-sm mb-15 text-left"><big class="bubble">&#8886;</big> &nbsp; &nbsp; Dépôt Github</a><br>
+                        <a href="https://bitbucket.org/palejeune/alt-records" target="_blank" class="btn btn-light btn-sm mb-10 text-left"><big class="bubble">&#8886;</big> &nbsp; &nbsp; Dépôt Bitbucket</a>
+                        <br><br>
+                        <h4 class="uppercase grey">Chatbox</h4>
+                        <hr class="ml-10 mr-10 mb-20">
+                        <a href="https://app.crisp.chat/website/0afd79ae-3f0e-45a1-914e-7c01dad73672/inbox" target="_blank" class="btn btn-light btn-sm text-left"><big class="bubble">&#128498;</big> &nbsp; &nbsp; Api.Crisp.chat</a>
+                    </span>
                 </div>
 
             </div>
 
             <div class="clear"></div>
-                <hr class="mg-30">
-            
+
+            <hr class="mg-30">
+
+            <div class="mg-20">
+                <p id="admin-info">&#11208; Informations</p>
+                <p id="admin-info2">&#11206; Informations</p>
+                <div id="admin-info-table">
+                    <p>En tant qu'<b>administrateur</b>, vous pouvez :</p>
+
+                    <table>
+                        <ol>
+                            <li>Ajouter, éditer ou supprimer un élément du catalogue</li>
+                            <li>Ajouter des tags</li>
+                            <li>Modérer les commentaires (normaux ou signalés)</li>
+                            <li>Promouvoir un utilisateur en ADMIN, ou le retrograder en USER</li>
+                            <li>Bloquer ou supprimer définitivement un utilisateur</li>
+                        </ol>
+                    </table>
+                </div>
+            </div>
+
+            {# <hr class="mg-30"> #}
 
         {% else %}
 

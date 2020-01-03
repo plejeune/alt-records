@@ -27,7 +27,7 @@
         <article class="item">
             
             <div class="metadata mb-20 ml-20 mg-10 mr-20">
-                Catalogue / Item / <span class="text-success">{{ article.artist }} { {{ article.title }} }</span>
+                Catalogue / Item / {{ article.artist }} : {{ article.title }}
                 <hr>
             </div>
 
@@ -78,8 +78,7 @@
                     <div class="ml-50 mg-10 grey item-info">
                         {# <h4 class="lightgrey">Description</h4>
                         <p class="capitalize">{{ article.content | raw }}</p> #}
-                        <p>Ajouté au catalogue le <b>{{ article.createdAt | date('d/m/Y') }}</b> par <b>{{ article.author }}</b><br>
-                        Modifié le <b>{{ article.modifiedAt | date('d/m/Y') }}</b> par <b>{{ article.author }}</b></p>              
+                        <p>&#10084; Ajouté au catalogue le <b>{{ article.createdAt | date('d/m/Y') }}</b> | Modifié le <b>{{ article.modifiedAt | date('d/m/Y') }}</b></p>              
                     </div>
 
                     <hr class="ml-50 w-100">
@@ -88,8 +87,8 @@
                     <div class="item-buttons ml-50 mg-30">
                         <a href="{{ path('catalogue') }}" class="btn btn-light btn-sm">&#8617; &nbsp;Catalogue</a> &nbsp; 
                         <a href="{{ path('report_item', { 'id': article.id }) }}" class="btn btn-warning btn-sm">&#9888; &nbsp;Signaler</a> &nbsp; 
-                        <a href="{{ path('blog_edit', { 'id': article.id }) }}" class="btn btn-primary btn-sm">&#9998; &nbsp;Modifier</a> &nbsp; 
-                        <div class="btn btn-danger btn-sm del_btn">&#10006; &nbsp;Supprimer</div>
+                        <a href="{{ path('blog_edit', { 'id': article.id }) }}" class="btn btn-primary btn-sm">&#9998;</a> &nbsp; 
+                        <div class="btn btn-danger btn-sm del_btn">&#10006;</div>
                     </div>
                 {% else %}
 

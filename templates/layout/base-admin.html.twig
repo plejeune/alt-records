@@ -8,6 +8,9 @@
         <script src="{{ asset('assets/js/jquery/jquery-3.4.1.min.js') }}"></script>
         <script src="{{ asset('assets/js/jquery/jquery-ui-1.12.1.min.js') }}"></script>
         <script src="{{ asset('assets/js/less/less-3.9.0.min.js') }}"></script>
+        <script src="{{ asset('assets/js/action.js') }}"></script>
+        <script src="{{ asset('assets/js/date.js') }}"></script>
+        <script src="{{ asset('assets/js/clock.js') }}"></script>
         {% block stylesheets %}{% endblock %}
     </head>
     <body class="bg-admin">
@@ -15,8 +18,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-primary">
             <a class="navbar-brand" href="{{ path('security_admin') }}"><b>&#9886; ALT RECORDS<span class="lightgrey">::ADMIN</span> &#9887;</b></a>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
-            </button>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
@@ -31,7 +33,12 @@
                             <a href="{{ path('logging_out') }}" class="nav-link">&#9826; Déconnexion</a>
                         </li>
                         <li class="nav-item">
-                            <small class="align-right-0 absolute mg-8 date">Bonjour, <b>{{ app.user.username }}</b>. &nbsp; | &nbsp; <span id="date"></span></small>
+                            <small class="align-right-0 absolute mg-8 date">
+                                <span class="time-data">
+                                    Bonjour, <b>{{ app.user.username }}</b>. &nbsp; | &nbsp; 
+                                    <span id="date"></span><span id="horloge"></span>
+                                <span>
+                            </small>
                         </li>
                     {% else %}
                         <li></li>
@@ -48,8 +55,8 @@
         {# Date gérée dans le script clock.js #}
 
         {% block javascripts %}
-            <script src="{{ asset('assets/js/date.js') }}"></script>
             <script>setTimeout(date,100);</script>
+            <script>setTimeout(horloge,1000);</script>
         {% endblock %}
 
     </body>

@@ -24,7 +24,7 @@
 
                 <h1>Mon compte</h1>
                 <hr>
-                <img class="float-l mg-30 ml-75 mr-50" src="{{ app.user.image }}">
+                <img class="float-l mg-30 ml-75 mr-50 light" src="{{ app.user.image }}">
 
                 <div class="mg-10 float-l data">        
                     <table id="data-table">
@@ -81,7 +81,7 @@
                                 <a href="{{ path('my_comments') }}" class="btn btn-light btn-sm">Voir mes commentaires</a>
                             </div>
                             <div class="edit_mdp_btn">
-                                <a href="#" class="btn btn-light btn-sm">Mon MP3 offert</a>
+                                <a href="{{ asset('assets/download/test.mp3') }}" target="_blank" class="btn btn-light btn-sm">Mon MP3 offert</a>
                             </div><br>
                             <div class="logout_btn">
                                 <a href="{{ path('security_logout') }}" class="btn btn-outline-warning btn-sm">Se déconnecter</a>

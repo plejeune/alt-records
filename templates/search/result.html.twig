@@ -16,7 +16,7 @@
 
         <div class="container">
             {% for article in articles %}
-                <article class="catalog_list">
+                <article class="catalog_list light">
                     <div class="content">
                         {% if app.user %}
                             <a href="{{ path('blog_show', {'slug': article.slug}) }}"><img src="{{ article.image }}" alt="">

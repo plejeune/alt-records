@@ -20,6 +20,12 @@ class CommentRepository extends ServiceEntityRepository
         parent::__construct($registry, Comment::class);
     }
 
+    public function findAllWithPagination() : Query {
+        return $this->createQueryBuilder('a')
+        ->orderBy("a.createdAt", "DESC")
+        ->getQuery();
+    }
+
     // /**
     //  * @return Comment[] Returns an array of Comment objects
     //  */

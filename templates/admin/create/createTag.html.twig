@@ -2,20 +2,29 @@
 
 {% block body %}
 
-    <section class="mt-8 list2">
-        <h1>Ajouter un tag</h1>
-        <br>
+    {% if app.user.role == "ROLE_ADMIN" %}
 
-        {{ form_start(form) }} 
-            {{ form_row(form.name, {'attr': {'placeholder': "Votre tag"}}) }}
+        <section class="mt-8 list2">
+            <h1>Ajouter un tag</h1>
             <br>
-            <b>Sélectionnez un élément du catalogue :</b>
-            {{ form_row(form.article) }}
 
-            <button type="submit" class="btn btn-primary mg-20">Taguer cet élément</button> &nbsp; 
-            <a href="{{ path('security_admin') }}" class="btn btn-light mg-20">Annuler</a>
-        {{ form_end(form) }} 
+            {{ form_start(form) }} 
+                {{ form_row(form.name, {'attr': {'placeholder': "Votre tag"}}) }}
+                <br>
+                <b>Sélectionnez un élément du catalogue :</b>
+                {{ form_row(form.article) }}
 
-    </section>
+                <button type="submit" class="btn btn-primary mg-20">Taguer cet élément</button> &nbsp; 
+                <a href="{{ path('security_admin') }}" class="btn btn-light mg-20">Annuler</a>
+            {{ form_end(form) }} 
+
+        </section>
+
+    {% else %}
+
+        <p>Vous n'avez pas accès à cette page</p>
+        <a href="{{ path('home') }}" class="btn btn-light btn-sm">&#8617; Retour</a>
+
+    {% endif %}
 
 {% endblock %}
