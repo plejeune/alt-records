@@ -43,6 +43,8 @@ Update your DB informations and paths in the *.env* file.
 * [Knp Paginator](https://github.com/KnpLabs/KnpPaginatorBundle) - Pagination
 * [Crisp](https://crisp.chat/fr/) - Chatbox system
 
+![ALT-Records](B.png)
+
 ## Authors
 
 * **Pierre Arthur Lejeune** - *Initial work* - [ALT Records](https://github.com/plejeune/alt-records)
