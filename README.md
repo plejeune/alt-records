@@ -1,8 +1,10 @@
-![ALT Records](A.png)
+![ALT Records](A1.png)
 #
 # ALT-Records
 
 Music catalog with admin dashboard, made with Symfony 4
+
+![ALT-Records](B.png)
 
 ## Getting Started
 
@@ -42,8 +44,6 @@ Update your DB informations and paths in the *.env* file.
 * [Gedmo/Stof](https://www.davidlangin.fr/articles/symfony-4-sluggable) - Slug
 * [Knp Paginator](https://github.com/KnpLabs/KnpPaginatorBundle) - Pagination
 * [Crisp](https://crisp.chat/fr/) - Chatbox system
-
-![ALT-Records](B.png)
 
 ## Authors
 
