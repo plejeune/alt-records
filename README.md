@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-In order to run this software with Symfony 4, make sure you have PHP version 7.1.3 or higher on your system. See [official site](https://www.php.net/) for details.
+In order to use Symfony 4, make sure you have PHP version 7.1.3 or higher on your system. See [official site](https://www.php.net/) for details.
 
 ### Installing
 
