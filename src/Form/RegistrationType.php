@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class RegistrationType extends AbstractType
 {
@@ -17,7 +18,11 @@ class RegistrationType extends AbstractType
             ->add('username')
             ->add('password', PasswordType::class)
             ->add('description')
-            ->add('image')
+            ->add('image', FileType::class, array(
+                'label' => 'Choisissez votre fichier',
+                'mapped' => false,
+                'required' => false,
+	))
         ;
     }
 
